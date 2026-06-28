@@ -1,9 +1,10 @@
 import './App.css'
 
-// const tracks = null
 const tracks = [
     {id: '1', title: 'Musicfun soundtrack', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'},
-    {id: '2',title: 'Musicfun soundtrack instrumental', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'}
+    {id: '2', isSelected: true, title: 'Musicfun soundtrack instrumental', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'},
+    {id: '1', title: 'Musicfun track', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'},
+    {id: '1', title: 'Musicfun sound', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'}
   ]
 
 export function App() {
@@ -27,7 +28,7 @@ export function App() {
       <h1>Music Player</h1>
       <ul>
         {tracks.map( t => (
-          <li key={t.id}>
+          <li key={t.id} style={{ border: t.isSelected ? '1px solid blue' : ''}}>
             <h2>{t.title}</h2>
             <audio src={t.src} controls></audio>
           </li>
