@@ -1,4 +1,5 @@
 import './App.css'
+import { useState } from 'react'
 
 const tracks = [
     {id: '1', title: 'Musicfun soundtrack', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'},
@@ -7,9 +8,9 @@ const tracks = [
     {id: '4', title: 'Musicfun sound', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'}
   ]
 
-const selectedTrackId = '1'
-
 export function App() {
+
+  const [selectedTrackId, setSelectedTrackId] = useState(null)
 
   if (tracks === null) {
     return <div>
@@ -28,10 +29,15 @@ export function App() {
   return (
     <div>
       <h1>Music Player</h1>
+      <button onClick={() => setSelectedTrackId(null)}>Reset selection</button>
       <ul>
         {tracks.map( t => (
           <li key={t.id} style={{ border: t.id === selectedTrackId ? '1px solid blue' : 'none'}}>
-            <h2>{t.title}</h2>
+            <div onClick={() => {
+              setSelectedTrackId(t.id)
+            }}>
+              {t.title}
+            </div>
             <audio src={t.src} controls></audio>
           </li>
         ))}
