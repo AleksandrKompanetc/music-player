@@ -11,7 +11,12 @@ export function App() {
   const [selectedTrackId, setSelectedTrackId] = useState(null)
 
   useEffect(() => {
-    fetch()
+    fetch('https://musicfun.it-incubator.app/api/tracks', {
+      headers: {
+        'api-key' : 'fbvhf-jvfh-fbvh-vfkk-jfffbvk'
+      }
+    }).then(res => res.json())
+      .then(json => setTracks(json))
   })
 
   if (tracks === null) {
