@@ -1,16 +1,18 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-const tracks = [
+export function App() {
+  const [tracks, setTracks] = useState([
     {id: '1', title: 'Musicfun soundtrack', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'},
     {id: '2', isSelected: true, title: 'Musicfun soundtrack instrumental', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'},
     {id: '3', title: 'Musicfun track', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'},
     {id: '4', title: 'Musicfun sound', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'}
-  ]
-
-export function App() {
-
+  ])
   const [selectedTrackId, setSelectedTrackId] = useState(null)
+
+  useEffect(() => {
+    fetch()
+  })
 
   if (tracks === null) {
     return <div>
