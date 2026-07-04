@@ -16,7 +16,7 @@ export function App() {
         'api-key' : 'fbvhf-jvfh-fbvh-vfkk-jfffbvk'
       }
     }).then(res => res.json())
-      .then(json => setTracks(json))
+      .then(json => setTracks(json.data))
   })
 
   if (tracks === null) {
@@ -38,14 +38,14 @@ export function App() {
       <h1>Music Player</h1>
       <button onClick={() => setSelectedTrackId(null)}>Reset selection</button>
       <ul>
-        {tracks.map( t => (
-          <li key={t.id} style={{ border: t.id === selectedTrackId ? '1px solid blue' : 'none'}}>
+        {tracks.map( track => (
+          <li key={track.id} style={{ border: t.id === selectedTrackId ? '1px solid blue' : 'none'}}>
             <div onClick={() => {
-              setSelectedTrackId(t.id)
+              setSelectedTrackId(track.id)
             }}>
-              {t.title}
+              {track.attributes.title}
             </div>
-            <audio src={t.src} controls></audio>
+            <audio src={track.attributes.attachments[0].url} controls></audio>
           </li>
         ))}
       </ul>
