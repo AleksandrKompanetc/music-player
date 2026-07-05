@@ -3,21 +3,21 @@ import { useState, useEffect } from 'react'
 
 export function App() {
   const [tracks, setTracks] = useState([
-    {id: '1', title: 'Musicfun soundtrack', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'},
-    {id: '2', isSelected: true, title: 'Musicfun soundtrack instrumental', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'},
-    {id: '3', title: 'Musicfun track', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'},
-    {id: '4', title: 'Musicfun sound', src: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3'}
+    { id: '1', title: 'Musicfun soundtrack', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' },
+    { id: '2', isSelected: true, title: 'Musicfun soundtrack instrumental', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' },
+    { id: '3', title: 'Musicfun track', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' },
+    { id: '4', title: 'Musicfun sound', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' }
   ])
-  const [selectedTrackId, setSelectedTrackId] = useState(null)
+  const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
 
-  useEffect(() => {
-    fetch('https://musicfun.it-incubator.app/api/tracks', {
-      headers: {
-        'api-key' : 'fbvhf-jvfh-fbvh-vfkk-jfffbvk'
-      }
-    }).then(res => res.json())
-      .then(json => setTracks(json.data))
-  })
+  // useEffect(() => {
+  //   fetch('https://musicfun.it-incubator.app/api/tracks', {
+  //     headers: {
+  //       'api-key': 'fbvhf-jvfh-fbvh-vfkk-jfffbvk'
+  //     }
+  //   }).then(res => res.json())
+  //     .then(json => setTracks(json.data))
+  // })
 
   if (tracks === null) {
     return <div>
@@ -37,18 +37,26 @@ export function App() {
     <div>
       <h1>Music Player</h1>
       <button onClick={() => setSelectedTrackId(null)}>Reset selection</button>
-      <ul>
-        {tracks.map( track => (
-          <li key={track.id} style={{ border: t.id === selectedTrackId ? '1px solid blue' : 'none'}}>
-            <div onClick={() => {
-              setSelectedTrackId(track.id)
-            }}>
-              {track.attributes.title}
-            </div>
-            <audio src={track.attributes.attachments[0].url} controls></audio>
-          </li>
-        ))}
-      </ul>
+      <div style={{
+        display: 'flex',
+        gap: '10px'
+      }}>
+        <ul>
+          {tracks.map(track => (
+            <li key={track.id} style={{ border: track.id === selectedTrackId ? '1px solid blue' : 'none' }}>
+              <div onClick={() => {
+                setSelectedTrackId(track.id)
+              }}>
+                {track.title}
+              </div>
+              <audio src={track.url} controls></audio>
+            </li>
+          ))}
+        </ul>
+        <div>
+          {selectedTrackId === null ? 'No track selected' : ''}
+        </div>
+      </div>
     </div>
   )
 }
