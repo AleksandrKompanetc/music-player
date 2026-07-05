@@ -33,6 +33,8 @@ export function App() {
     </div>
   }
 
+  let selectedTrack = null
+
   return (
     <div>
       <h1>Music Player</h1>
@@ -42,19 +44,26 @@ export function App() {
         gap: '10px'
       }}>
         <ul>
-          {tracks.map(track => (
-            <li key={track.id} style={{ border: track.id === selectedTrackId ? '1px solid blue' : 'none' }}>
-              <div onClick={() => {
-                setSelectedTrackId(track.id)
-              }}>
-                {track.title}
-              </div>
-              <audio src={track.url} controls></audio>
-            </li>
-          ))}
+          {tracks.map(track => {
+
+            if (track.id === selectedTrackId) {
+              selectedTrack = track
+            }
+
+            return (
+              <li key={track.id} style={{ border: track.id === selectedTrackId ? '1px solid blue' : 'none' }}>
+                <div onClick={() => {
+                  setSelectedTrackId(track.id)
+                }}>
+                  {track.title}
+                </div>
+                <audio src={track.url} controls></audio>
+              </li>
+            )
+          })}
         </ul>
         <div>
-          {selectedTrackId === null ? 'No track selected' : ''}
+          {selectedTrackId === null ? 'Track is not selected' : ''}
         </div>
       </div>
     </div>
