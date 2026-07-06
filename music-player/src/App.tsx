@@ -33,7 +33,7 @@ export function App() {
     </div>
   }
 
-  let selectedTrack = null
+  let selectedTrack = tracks.find(track => track.id === selectedTrackId)
 
   return (
     <div>
@@ -45,10 +45,6 @@ export function App() {
       }}>
         <ul>
           {tracks.map(track => {
-
-            if (track.id === selectedTrackId) {
-              selectedTrack = track
-            }
 
             return (
               <li key={track.id} style={{ border: track.id === selectedTrackId ? '1px solid blue' : 'none' }}>
@@ -63,7 +59,7 @@ export function App() {
           })}
         </ul>
         <div>
-          {selectedTrackId === null ? 'Track is not selected' : ''}
+          {selectedTrackId === null ? 'Track is not selected' : selectedTrack?.title}
         </div>
       </div>
     </div>
