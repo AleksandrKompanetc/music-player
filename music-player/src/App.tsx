@@ -34,7 +34,7 @@ export function App() {
     </div>
   }
 
-  let selectedTrack = tracks.find(track => track.id === selectedTrackId)
+  // let selectedTrack = tracks.find(track => track.id === selectedTrackId)
 
   return (
     <div>
@@ -54,6 +54,7 @@ export function App() {
               <li key={track.id} style={{ border: track.id === selectedTrackId ? '1px solid blue' : 'none' }}>
                 <div onClick={() => {
                   setSelectedTrackId(track.id)
+                  setSelectedTrack(track)
                 }}>
                   {track.title}
                 </div>
