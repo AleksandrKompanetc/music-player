@@ -8,6 +8,7 @@ export function App() {
     { id: '3', title: 'Musicfun track', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' },
     { id: '4', title: 'Musicfun sound', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' }
   ])
+  const [selectedTrack, setSelectedTrack] = useState(null)
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
 
   // useEffect(() => {
@@ -38,7 +39,10 @@ export function App() {
   return (
     <div>
       <h1>Music Player</h1>
-      <button onClick={() => setSelectedTrackId(null)}>Reset selection</button>
+      <button onClick={() => {
+        setSelectedTrackId(null)
+        setSelectedTrack(null)
+        }}>Reset selection</button>
       <div style={{
         display: 'flex',
         gap: '10px'
