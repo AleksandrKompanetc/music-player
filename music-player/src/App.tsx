@@ -60,9 +60,7 @@ export function App() {
                       'api-key': 'fbvhf-jvfh-fbvh-vfkk-jfffbvk'
                     }
                   }).then(res => res.json())
-                    .then(json => setTracks(json.data))
-
-                  setSelectedTrack(track)
+                    .then(json => setSelectedTrack(json.data))
                 }}>
                   {track.title}
                 </div>
@@ -72,7 +70,9 @@ export function App() {
           })}
         </ul>
         <div>
-          {selectedTrackId === null ? 'Track is not selected' : selectedTrack?.title}
+          {selectedTrack === null 
+            ? 'Track is not selected' 
+            : selectedTrack.attributes.title}
         </div>
       </div>
     </div>
