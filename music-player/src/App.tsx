@@ -42,7 +42,7 @@ export function App() {
       <button onClick={() => {
         setSelectedTrackId(null)
         setSelectedTrack(null)
-        }}>Reset selection</button>
+      }}>Reset selection</button>
       <div style={{
         display: 'flex',
         gap: '10px'
@@ -54,6 +54,14 @@ export function App() {
               <li key={track.id} style={{ border: track.id === selectedTrackId ? '1px solid blue' : 'none' }}>
                 <div onClick={() => {
                   setSelectedTrackId(track.id)
+
+                  fetch('https://musicfun.it-incubator.app/api/tracks/' + track.id, {
+                    headers: {
+                      'api-key': 'fbvhf-jvfh-fbvh-vfkk-jfffbvk'
+                    }
+                  }).then(res => res.json())
+                    .then(json => setTracks(json.data))
+
                   setSelectedTrack(track)
                 }}>
                   {track.title}
