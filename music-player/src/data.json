@@ -38,7 +38,17 @@
           "id" : "string",
           "name" : "string"
         }
-      ]
+      ],
+      "artists" : [
+        {
+          "id" : "string",
+          "name" : "string"
+        }
+      ],
+      "user" : {
+        "id" : "string",
+        "name" : "string"
+      }
     }
   }
 }
