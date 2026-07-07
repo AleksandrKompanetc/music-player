@@ -1,0 +1,44 @@
+{
+  "data": {
+    "id": "string",
+    "type": "tracks",
+    "attributes": {
+      "title": "string",
+      "lyrics": "string",
+      "releaseAt": "2025-09-05T12:49:52.421Z",
+      "addedAt": "2025-09-05T12:49:52.421Z",
+      "updatedAt": "2025-09-05T12:49:52.421Z",
+      "duration": 0,
+      "likesCount": 0,
+      "attachments": [
+        {
+          "id": "string",
+          "addedAt": "2025-09-05T12:49:52.421Z",
+          "updatedAt": "2025-09-05T12:49:52.421Z",
+          "version" : 0,
+          "url" : "https://cdn.example.com/uploads/track123/cover.jpg",
+          "contentType" : "image/jpeg",
+          "originalName" : 'cover.jpg',
+          "fileSize" : 34872
+        }
+      ],
+      "images" : {
+        "main" : [
+          {
+            "type" : "original",
+            "width" : 0,
+            "height" : 0,
+            "fileSize" : 0,
+            "url" : "string"
+          }
+        ]
+      },
+      "tags" : [
+        {
+          "id" : "string",
+          "name" : "string"
+        }
+      ]
+    }
+  }
+}
