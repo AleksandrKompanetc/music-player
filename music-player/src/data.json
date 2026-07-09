@@ -18,7 +18,7 @@
           "version" : 0,
           "url" : "https://cdn.example.com/uploads/track123/cover.jpg",
           "contentType" : "image/jpeg",
-          "originalName" : 'cover.jpg',
+          "originalName" : "cover.jpg",
           "fileSize" : 34872
         }
       ],
@@ -48,7 +48,9 @@
       "user" : {
         "id" : "string",
         "name" : "string"
-      }
+      },
+      "isPublished" : true,
+      
     }
   }
 }
