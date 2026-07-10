@@ -2,23 +2,18 @@ import './App.css'
 import { useState, useEffect } from 'react'
 
 export function App() {
-  const [tracks, setTracks] = useState([
-    { id: '1', title: 'Musicfun soundtrack', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' },
-    { id: '2', isSelected: true, title: 'Musicfun soundtrack instrumental', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' },
-    { id: '3', title: 'Musicfun track', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' },
-    { id: '4', title: 'Musicfun sound', url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3' }
-  ])
+  const [tracks, setTracks] = useState(null)
   const [selectedTrack, setSelectedTrack] = useState(null)
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
 
-  // useEffect(() => {
-  //   fetch('https://musicfun.it-incubator.app/api/tracks', {
-  //     headers: {
-  //       'api-key': 'fbvhf-jvfh-fbvh-vfkk-jfffbvk'
-  //     }
-  //   }).then(res => res.json())
-  //     .then(json => setTracks(json.data))
-  // })
+  useEffect(() => {
+    fetch('https://api.audius.co/v1/tracks/search?query=Imagine', {
+      headers: {
+        'api-key': '0xe8a8068a78892896d1451820fb33bd92f651fc4f'
+      }
+    }).then(res => res.json())
+      .then(json => setTracks(json.data))
+  }, [])
 
   if (tracks === null) {
     return <div>
@@ -55,9 +50,9 @@ export function App() {
                 <div onClick={() => {
                   setSelectedTrackId(track.id)
 
-                  fetch('https://musicfun.it-incubator.app/api/tracks/' + track.id, {
+                  fetch('https://api.audius.co/v1/tracks/search?query=Imagine' + track.id, {
                     headers: {
-                      'api-key': 'fbvhf-jvfh-fbvh-vfkk-jfffbvk'
+                      'api-key': '0xe8a8068a78892896d1451820fb33bd92f651fc4f'
                     }
                   }).then(res => res.json())
                     .then(json => setSelectedTrack(json.data))
@@ -72,7 +67,7 @@ export function App() {
         <div>
           {selectedTrack === null 
             ? 'Track is not selected' 
-            : selectedTrack.attributes.title}
+            : selectedTrack.track.title}
         </div>
       </div>
     </div>
