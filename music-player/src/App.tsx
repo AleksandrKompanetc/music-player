@@ -1,9 +1,14 @@
 import './App.css'
 import { useState, useEffect } from 'react'
 
+type Track = {
+  id: string
+  title: string
+}
+
 export function App() {
-  const [tracks, setTracks] = useState(null)
-  const [selectedTrack, setSelectedTrack] = useState(null)
+  const [tracks, setTracks] = useState<Track[]>([])
+  const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
 
   useEffect(() => {
@@ -15,7 +20,7 @@ export function App() {
       .then(json => setTracks(json.data))
   }, [])
 
-  if (tracks === null) {
+  if (tracks.length === 0) {
     return <div>
       <h1>Music Player</h1>
       <span>Loading...</span>
@@ -50,7 +55,7 @@ export function App() {
                 <div onClick={() => {
                   setSelectedTrackId(track.id)
 
-                  fetch('https://api.audius.co/v1/tracks/search?query=Imagine' + track.id, {
+                  fetch(`https://api.audius.co/v1/tracks/${track.id}`, {
                     headers: {
                       'api-key': '0xe8a8068a78892896d1451820fb33bd92f651fc4f'
                     }
@@ -67,7 +72,7 @@ export function App() {
         <div>
           {selectedTrack === null 
             ? 'Track is not selected' 
-            : selectedTrack.track.title}
+            : selectedTrack.title}
         </div>
       </div>
     </div>
