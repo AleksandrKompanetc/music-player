@@ -10,6 +10,7 @@ export function App() {
   const [tracks, setTracks] = useState<Track[]>([])
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch('https://api.audius.co/v1/tracks/search?query=Imagine', {
