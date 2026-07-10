@@ -65,14 +65,17 @@ export function App() {
                 }}>
                   {track.title}
                 </div>
-                <audio src={track.url} controls></audio>
+                <audio
+                  src={`https://api.audius.co/v1/tracks/${track.id}/stream`}
+                  controls
+                />
               </li>
             )
           })}
         </ul>
         <div>
-          {selectedTrack === null 
-            ? 'Track is not selected' 
+          {selectedTrack === null
+            ? 'Track is not selected'
             : selectedTrack.title}
         </div>
       </div>
