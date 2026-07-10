@@ -53,16 +53,12 @@ export function App() {
 
             return (
               <li key={track.id} style={{ border: track.id === selectedTrackId ? '1px solid blue' : 'none' }}>
-                <div onClick={() => {
-                  setSelectedTrackId(track.id)
-
-                  fetch(`https://api.audius.co/v1/tracks/${track.id}`, {
-                    headers: {
-                      'api-key': '0xe8a8068a78892896d1451820fb33bd92f651fc4f'
-                    }
-                  }).then(res => res.json())
-                    .then(json => setSelectedTrack(json.data))
-                }}>
+                <div
+                  onClick={() => {
+                    setSelectedTrackId(track.id)
+                    setSelectedTrack(track)
+                  }}
+                >
                   {track.title}
                 </div>
                 <audio
@@ -74,9 +70,9 @@ export function App() {
           })}
         </ul>
         <div>
-          {selectedTrack === null
-            ? 'Track is not selected'
-            : selectedTrack.title}
+          {selectedTrack
+            ? selectedTrack.title
+            : 'Track is not selected'}
         </div>
       </div>
     </div>
