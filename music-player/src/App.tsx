@@ -33,6 +33,12 @@ export function App() {
     )
   }
 
+  if (!tracks.length) {
+    return (
+      <span>No tracks!</span>
+    )
+  }
+
   // let selectedTrack = tracks.find(track => track.id === selectedTrackId)
 
   return (
