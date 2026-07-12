@@ -5,6 +5,10 @@ import { getTracks } from './api/audius'
 type Track = {
   id: string
   title: string
+  artwork?: {
+    '150x150'?: string
+  }
+  duration?: number
 }
 
 export function App() {
@@ -68,6 +72,10 @@ export function App() {
                 <audio
                   src={`https://api.audius.co/v1/tracks/${track.id}/stream`}
                   controls
+                />
+                <img 
+                  src={track.artwork?.['150x150']}
+                  alt={track.title}
                 />
               </li>
             )
