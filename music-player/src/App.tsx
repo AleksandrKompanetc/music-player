@@ -1,5 +1,6 @@
 import './App.css'
 import { useState, useEffect } from 'react'
+import { getTracks } from './api/audius'
 
 type Track = {
   id: string
@@ -13,26 +14,23 @@ export function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('https://api.audius.co/v1/tracks/search?query=Imagine', {
-      headers: {
-        'api-key': '0xe8a8068a78892896d1451820fb33bd92f651fc4f'
-      }
-    }).then(res => res.json())
-      .then(json => setTracks(json.data))
+    const fetchTracks = async () => {
+      setLoading(true)
+      const tracks = await getTracks()
+      setTracks(tracks)
+      setLoading(false)
+    }
+
+    fetchTracks()
   }, [])
 
-  if (tracks.length === 0) {
-    return <div>
-      <h1>Music Player</h1>
-      <span>Loading...</span>
-    </div>
-  }
-
-  if (tracks.length === 0) {
-    return <div>
-      <h1>Music Player</h1>
-      <span>No tracks</span>
-    </div>
+  if (loading) {
+    return (
+      <div>
+        <h1>Music Player</h1>
+        <span>Loading...</span>
+      </div>
+    )
   }
 
   // let selectedTrack = tracks.find(track => track.id === selectedTrackId)
