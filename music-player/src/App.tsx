@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { getTracks } from './api/audius'
 
 type Track = {
@@ -13,9 +13,10 @@ type Track = {
 
 export function App() {
   const [tracks, setTracks] = useState<Track[]>([])
-  const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
+  // const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchTracks = async () => {
@@ -50,7 +51,7 @@ export function App() {
       <h1>Music Player</h1>
       <button onClick={() => {
         setSelectedTrackId(null)
-        setSelectedTrack(null)
+        // setSelectedTrack(null)
       }}>Reset selection</button>
       <div style={{
         display: 'flex',
@@ -64,7 +65,7 @@ export function App() {
                 <div
                   onClick={() => {
                     setSelectedTrackId(track.id)
-                    setSelectedTrack(track)
+                    // setSelectedTrack(track)
                   }}
                 >
                   {track.title}
