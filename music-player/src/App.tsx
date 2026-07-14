@@ -18,6 +18,10 @@ export function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  const selectedTrack = useMemo(() => {
+    return tracks.find(track => track.id === selectedTrackId) || null
+  }, [tracks, selectedTrackId])
+
   useEffect(() => {
     const fetchTracks = async () => {
       setLoading(true)
