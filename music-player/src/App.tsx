@@ -53,6 +53,12 @@ export function App() {
       )
     }
 
+    if (error) {
+      return (
+        <div>{error}</div>
+      )
+    }
+
     // let selectedTrack = tracks.find(track => track.id === selectedTrackId)
 
     return (
