@@ -25,8 +25,8 @@ export function App() {
   const fetchTracks = async () => {
     setLoading(true)
     try {
-      const data = await getTracks()
-      setTracks(data)
+      const tracks: Track[] = await getTracks()
+      setTracks(tracks)
     } catch {
       setError('Failed to load tracks')
     } finally {
