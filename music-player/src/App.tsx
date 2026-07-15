@@ -89,10 +89,14 @@ export function App() {
                     src={`https://api.audius.co/v1/tracks/${track.id}/stream`}
                     controls
                   />
-                  <img
-                    src={track.artwork?.['150x150']}
-                    alt={track.title}
-                  />
+                  {track.artwork?.['150x150'] ? (
+                    <img
+                      src={track.artwork?.['150x150']}
+                      alt={track.title}
+                    />
+                  ) : (
+                    <div>No image</div>
+                  )}
                 </li>
               )
             })}
