@@ -20,21 +20,20 @@ export function App() {
 
   const selectedTrack = tracks.find(track => track.id === selectedTrackId) ?? null
 
-  const fetchTracks = async () => {
-    setLoading(true)
-    setError(null)
-
-    try {
-      const tracks: Track[] = await getTracks()
-      setTracks(tracks)
-    } catch {
-      setError('Failed to load tracks')
-    } finally {
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
+    const fetchTracks = async () => {
+      setLoading(true)
+      setError(null)
+
+      try {
+        const tracks: Track[] = await getTracks()
+        setTracks(tracks)
+      } catch {
+        setError('Failed to load tracks')
+      } finally {
+        setLoading(false)
+      }
+    }
     fetchTracks()
   }, [])
 
