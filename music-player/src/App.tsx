@@ -76,14 +76,14 @@ export function App() {
           {tracks.map(track => {
 
             return (
-              <li key={track.id} style={{ 
-                border: 
-                  track.id === selectedTrackId 
-                  ? '2px solid blue' 
-                  : '2px solid transparent',
+              <li key={track.id} style={{
+                border:
+                  track.id === selectedTrackId
+                    ? '2px solid blue'
+                    : '2px solid transparent',
                 borderRadius: '8px',
-                padding: '8px', 
-                }}>
+                padding: '8px',
+              }}>
                 <div
                   style={{ cursor: 'pointer' }}
                   onClick={() => {
@@ -109,11 +109,20 @@ export function App() {
             )
           })}
         </ul>
-        <div>
-          {selectedTrack
-            ? selectedTrack.title
-            : 'Track is not selected'}
-        </div>
+        {selectedTrack ? (
+          <div>
+            <h2>{selectedTrack.title}</h2>
+
+            {selectedTrack.artwork?.['150x150'] && (
+              <img
+                src={selectedTrack.artwork['150x150']}
+                alt={selectedTrack.title}
+              />
+            )}
+          </div>
+        ) : (
+          <div>Track is not selected</div>
+        )}
       </div>
     </div>
   )
