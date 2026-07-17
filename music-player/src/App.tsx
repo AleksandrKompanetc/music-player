@@ -22,6 +22,8 @@ export function App() {
 
   const fetchTracks = async () => {
     setLoading(true)
+    setError(null)
+
     try {
       const tracks: Track[] = await getTracks()
       setTracks(tracks)
@@ -74,8 +76,16 @@ export function App() {
           {tracks.map(track => {
 
             return (
-              <li key={track.id} style={{ border: track.id === selectedTrackId ? '1px solid blue' : 'none' }}>
+              <li key={track.id} style={{ 
+                border: 
+                  track.id === selectedTrackId 
+                  ? '2px solid blue' 
+                  : '2px solid transparent',
+                borderRadius: '8px',
+                padding: '8px', 
+                }}>
                 <div
+                  style={{ cursor: 'pointer' }}
                   onClick={() => {
                     setSelectedTrackId(track.id)
                     // setSelectedTrack(track)
