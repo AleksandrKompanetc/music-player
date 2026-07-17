@@ -61,28 +61,21 @@ export function App() {
   // let selectedTrack = tracks.find(track => track.id === selectedTrackId)
 
   return (
-    <div>
-      <h1>Music Player</h1>
+    <div className='app'>
+      <h1 className='title'>Music Player</h1>
       <button onClick={() => {
         setSelectedTrackId(null)
         // setSelectedTrack(null)
       }}>Reset selection</button>
-      <div style={{
-        display: 'flex',
-        gap: '10px'
-      }}>
+      <div className='layout'>
         <ul>
           {tracks.map(track => {
 
             return (
-              <li key={track.id} style={{
-                border:
-                  track.id === selectedTrackId
-                    ? '2px solid blue'
-                    : '2px solid transparent',
-                borderRadius: '8px',
-                padding: '8px',
-              }}>
+              <li className={`track-card ${track.id === selectedTrackId
+                  ? 'active'
+                  : ''
+                }`}>
                 <div
                   style={{ cursor: 'pointer' }}
                   onClick={() => {
