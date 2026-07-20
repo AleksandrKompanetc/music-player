@@ -183,6 +183,13 @@
   }
 }
 
+.player-cover {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
 .app {
   min-height: 100vh;
   background: #41414f;

@@ -61,7 +61,7 @@ export function App() {
   // let selectedTrack = tracks.find(track => track.id === selectedTrackId)
 
   return (
-    <div className='app'>
+    <div className='player-cover'>
       <h1 className='title'>Music Player</h1>
       <button onClick={() => {
         setSelectedTrackId(null)
