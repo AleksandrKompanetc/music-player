@@ -63,7 +63,7 @@ export function App() {
   return (
     <div className='player-cover'>
       <h1 className='title'>Music Player</h1>
-      <button 
+      <button
         className='reset-btn'
         onClick={() => setSelectedTrackId(null)}
       >
@@ -75,8 +75,8 @@ export function App() {
 
             return (
               <li className={`track-card ${track.id === selectedTrackId
-                  ? 'active'
-                  : ''
+                ? 'active'
+                : ''
                 }`}>
                 <div
                   style={{ cursor: 'pointer' }}
@@ -103,20 +103,29 @@ export function App() {
             )
           })}
         </ul>
-        {selectedTrack ? (
-          <div>
-            <h2>{selectedTrack.title}</h2>
+        <div className='player-panel'>
+          {selectedTrack ? (
+            <>
+              {selectedTrack.artwork?.['150x150'] && (
+                <img
+                  src={selectedTrack.artwork['150x150']}
+                  alt={selectedTrack.title}
+                  className='player-cover'
+                />
+              )}
 
-            {selectedTrack.artwork?.['150x150'] && (
-              <img
-                src={selectedTrack.artwork['150x150']}
-                alt={selectedTrack.title}
+              <h2>{selectedTrack.title}</h2>
+
+              <audio
+                controls
+                className='player-audio'
+                src={`https://api.audius.co/v1/tracks/${selectedTrack.id}/stream`}
               />
-            )}
-          </div>
-        ) : (
-          <div>Track is not selected</div>
-        )}
+            </>
+          ) : (
+            <div>Track is not selected</div>
+          )}
+        </div>
       </div>
     </div>
   )
