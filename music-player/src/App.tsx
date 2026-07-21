@@ -63,10 +63,12 @@ export function App() {
   return (
     <div className='player-cover'>
       <h1 className='title'>Music Player</h1>
-      <button onClick={() => {
-        setSelectedTrackId(null)
-        // setSelectedTrack(null)
-      }}>Reset selection</button>
+      <button 
+        className='reset-btn'
+        onClick={() => setSelectedTrackId(null)}
+      >
+        Reset
+      </button>
       <div className='layout'>
         <ul>
           {tracks.map(track => {
