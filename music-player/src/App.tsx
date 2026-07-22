@@ -17,6 +17,7 @@ export function App() {
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [search, setSearch] = useState('')
 
   const selectedTrack = tracks.find(track => track.id === selectedTrackId) ?? null
 
@@ -58,20 +59,34 @@ export function App() {
     )
   }
 
+  const filteredTracks = tracks.filter(track =>
+  track.title
+    .toLowerCase()
+    .includes(search.toLowerCase())
+)
+
   // let selectedTrack = tracks.find(track => track.id === selectedTrackId)
 
   return (
     <div className='app'>
       <h1 className='title'>Music Player</h1>
+
+      <input
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search track..."
+      />
+
       <button
         className='reset-btn'
         onClick={() => setSelectedTrackId(null)}
       >
         Reset
       </button>
+
       <div className='layout'>
         <ul>
-          {tracks.map(track => {
+          {filteredTracks.map(track => {
 
             return (
               <li
