@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { getTracks } from './api/audius'
 
 type Track = {
@@ -61,7 +61,7 @@ export function App() {
   // let selectedTrack = tracks.find(track => track.id === selectedTrackId)
 
   return (
-    <div className='player-cover'>
+    <div className='app'>
       <h1 className='title'>Music Player</h1>
       <button
         className='reset-btn'
@@ -74,16 +74,19 @@ export function App() {
           {tracks.map(track => {
 
             return (
-              <li className={`track-card ${track.id === selectedTrackId
-                ? 'active'
-                : ''
-                }`}>
+              <li
+                key={track.id}
+                className={`track-card ${track.id === selectedTrackId
+                  ? 'active'
+                  : ''
+                  }`}
+                onClick={() => {
+                  setSelectedTrackId(track.id)
+                  // setSelectedTrack(track)
+                }}
+              >
                 <div
                   style={{ cursor: 'pointer' }}
-                  onClick={() => {
-                    setSelectedTrackId(track.id)
-                    // setSelectedTrack(track)
-                  }}
                 >
                   {track.title}
                 </div>
