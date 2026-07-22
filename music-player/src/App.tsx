@@ -69,7 +69,9 @@ export function App() {
 
   return (
     <div className='app'>
-      <h1 className='title'>Music Player</h1>
+      <h1 className="title">
+        🎵 Audius Music Player
+      </h1>
 
       <input
         value={search}
