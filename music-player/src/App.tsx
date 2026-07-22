@@ -87,17 +87,15 @@ export function App() {
               >
                 <div
                   style={{ cursor: 'pointer' }}
+                  className='track-header'
                 >
                   {track.title}
                 </div>
-                <audio
-                  src={`https://api.audius.co/v1/tracks/${track.id}/stream`}
-                  controls
-                />
                 {track.artwork?.['150x150'] ? (
                   <img
                     src={track.artwork?.['150x150']}
                     alt={track.title}
+                    className='track-thumb'
                   />
                 ) : (
                   <div>No image</div>
@@ -126,7 +124,10 @@ export function App() {
               />
             </>
           ) : (
-            <div>Track is not selected</div>
+            <div className="empty-player">
+              🎵
+              <p>Select a track to start listening</p>
+            </div>
           )}
         </div>
       </div>

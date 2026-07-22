@@ -242,3 +242,16 @@
   padding: 20px;
   text-align: center;
 }
+
+.track-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.track-thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+}
