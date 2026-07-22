@@ -60,10 +60,10 @@ export function App() {
   }
 
   const filteredTracks = tracks.filter(track =>
-  track.title
-    .toLowerCase()
-    .includes(search.toLowerCase())
-)
+    track.title
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  )
 
   // let selectedTrack = tracks.find(track => track.id === selectedTrackId)
 
@@ -75,6 +75,7 @@ export function App() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search track..."
+        className='search-input'
       />
 
       <button
@@ -145,6 +146,9 @@ export function App() {
             </div>
           )}
         </div>
+        <p>
+          Tracks: {tracks.length}
+        </p>
       </div>
     </div>
   )
