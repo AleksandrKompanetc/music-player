@@ -270,17 +270,15 @@ export function App() {
                   style={{ cursor: 'pointer' }}
                   className='track-header'
                 >
-                  {track.title}
+                  {track.artwork?.['150x150'] && (
+                    <img
+                      src={track.artwork?.['150x150']}
+                      alt={track.title}
+                      className='track-thumb'
+                    />
+                  )}
+                  <span>{track.title}</span>
                 </div>
-                {track.artwork?.['150x150'] ? (
-                  <img
-                    src={track.artwork?.['150x150']}
-                    alt={track.title}
-                    className='track-thumb'
-                  />
-                ) : (
-                  <div>No image</div>
-                )}
               </li>
             )
           })}
