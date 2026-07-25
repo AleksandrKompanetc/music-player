@@ -223,7 +223,8 @@
 }
 
 .track-card.active {
-  border: 2px solid #3b82f6;
+  border: 2px solid #2563eb;
+  background: #eff6ff;
 }
 
 .reset-btn {

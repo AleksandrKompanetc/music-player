@@ -162,7 +162,7 @@
 
 
 import './App.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { getTracks } from './api/audius'
 
 type Track = {
@@ -205,7 +205,9 @@ export function App() {
     return (
       <div>
         <h1>Music Player</h1>
-        <span>Loading...</span>
+        <div className="loading">
+          🎵 Loading music...
+        </div>
       </div>
     )
   }
