@@ -236,19 +236,19 @@ export function App() {
         🎵 Audius Music Player
       </h1>
 
-      <input
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search track..."
-        className='search-input'
-      />
-
       {selectedTrackId && (<button
         className='reset-btn'
         onClick={() => setSelectedTrackId(null)}
       >
         Reset
       </button>)}
+
+      <input
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search track..."
+        className='search-input'
+      />
 
       <div className='layout'>
         <ul>
