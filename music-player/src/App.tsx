@@ -33,36 +33,7 @@ export function App() {
 
       {/* <div className='layout'>
         <TracksList />
-        <div className='player-panel'>
-          {selectedTrack ? (
-            <>
-              {selectedTrack.artwork?.['150x150'] && (
-                <img
-                  src={selectedTrack.artwork['150x150']}
-                  alt={selectedTrack.title}
-                  className='player-cover'
-                />
-              )}
-
-              <h2>{selectedTrack.title}</h2>
-
-              <audio
-                controls
-                className='player-audio'
-                src={`https://api.audius.co/v1/tracks/${selectedTrack.id}/stream`}
-              />
-            </>
-          ) : (
-            <div className="empty-player">
-              🎵
-              <p>Select a track to start listening</p>
-            </div>
-          )}
-        </div>
-        <p>
-          Tracks: {tracks.length}
-        </p>
-      </div> */}
+        
     </div>
   )
 }

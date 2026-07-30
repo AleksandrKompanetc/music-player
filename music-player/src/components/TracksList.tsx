@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getTracks } from '../api/audius'
 
-type Track = {
+export type Track = {
   id: string
   title: string
   artwork?: {
