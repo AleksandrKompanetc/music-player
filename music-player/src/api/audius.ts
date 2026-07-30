@@ -7,3 +7,18 @@ export const getTracks = async () => {
   const data = await response.json()
   return data.data
 }
+
+// const fetchTracks = async () => {
+  //   setLoading(true)
+  //   setError(null)
+
+  //   try {
+  //     const tracks: Track[] = await getTracks()
+  //     setTracks(tracks)
+  //   } catch {
+  //     setError('Failed to load tracks')
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
+  // fetchTracks()
