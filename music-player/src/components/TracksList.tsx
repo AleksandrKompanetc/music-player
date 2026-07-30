@@ -51,10 +51,7 @@ export function TracksList() {
             return (
               <li
                 key={track.id}
-                className={`track-card ${track.id === selectedTrackId
-                  ? 'active'
-                  : ''
-                  }`}
+                style={{ border: track.id === selectedTrackId ? '1px solid orange' : '' }}
                 onClick={() => {
                   setSelectedTrackId(track.id)
                   // setSelectedTrack(track)
