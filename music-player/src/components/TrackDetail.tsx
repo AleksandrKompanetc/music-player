@@ -22,6 +22,16 @@ export function TrackDetail() {
   }, [selectedTrackId])
 
   return (
-    
+    <div>
+      <h2>Details</h2>
+      {!selectedTrack && !selectedTrackId && 'Track is not selected'}
+      {!selectedTrack && selectedTrackId && 'Loading'}
+      {selectedTrack && selectedTrackId && selectedTrack.id !== selectedTrackId && 'Loading...'}
+      {selectedTrack && <div>
+          <h3>{selectedTrack.title}</h3>
+          <h4>Lyrics</h4>
+          <p></p>
+        </div>}
+    </div>
   )
 }

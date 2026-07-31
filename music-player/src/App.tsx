@@ -30,10 +30,6 @@ export function App() {
       />
 
       <TracksList />
-
-      {/* <div className='layout'>
-        <TracksList />
-        
     </div>
   )
 }
