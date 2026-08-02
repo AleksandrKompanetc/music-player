@@ -1,40 +1,31 @@
-import './App.css'
-import { useState } from 'react'
-import { TracksList } from './components/TracksList'
+import { useState, useEffect } from 'react'
+import { getTracks } from './api/audius'
+import { TracksList, Track } from './components/TracksList'
+import TrackDetail from './components/TrackDetail'
 
-export function App() {
-  // const [tracks, setTracks] = useState<Track[]>([])
+export default function App() {
+  const [tracks, setTracks] = useState<Track[]>([])
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
-  const [search, setSearch] = useState('')
+
+  useEffect(() => {
+    getTracks().then(setTracks)
+  }, [])
+
+  const selectedTrack =
+    tracks.find(track => track.id === selectedTrackId) ?? null
 
   return (
-    <div className='app'>
-      <h1
-        className="title"
-      >
-        🎵 Audius Music Player
-      </h1>
-
-      {selectedTrackId && (<button
-        className='reset-btn'
-        onClick={() => setSelectedTrackId(null)}
-      >
-        Reset
-      </button>)}
-
-      <input
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search track..."
-        className='search-input'
+    <div className="layout">
+      <TracksList
+        tracks={tracks}
+        selectedTrackId={selectedTrackId}
+        onSelect={setSelectedTrackId}
       />
 
-      <TracksList />
+      <TrackDetail track={selectedTrack} />
     </div>
   )
 }
-
-export default App
 
 
 
