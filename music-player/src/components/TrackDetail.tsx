@@ -4,27 +4,29 @@ type Props = {
   track: Track | null
 }
 
-export function TrackDetail({ track }: Props) {
+export default function TrackDetail({
+  track,
+}: Props) {
   if (!track) {
     return (
-      <div className='player-panel'>
+      <div className="player-panel">
         <h2>Select a track</h2>
       </div>
     )
   }
 
   return (
-    <div className='player-panel'>
+    <div className="player-panel">
       {track.artwork?.['150x150'] && (
         <img
-          src={track.artwork?.['150x150']}
+          src={track.artwork['150x150']}
           alt={track.title}
-          className='player-cover'
+          className="player-cover"
         />
-      )
-      }
+      )}
 
       <h2>{track.title}</h2>
+
       <audio
         controls
         src={`https://api.audius.co/v1/tracks/${track.id}/stream`}
