@@ -14,14 +14,11 @@ export type Track = {
 
 export default function App() {
   const [tracks, setTracks] = useState<Track[]>([])
-  const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
 
   useEffect(() => {
     getTracks().then(setTracks)
   }, [])
 
-  const selectedTrack =
-    tracks.find(track => track.id === selectedTrackId) ?? null
 
   return (
     <div className="layout">
@@ -29,7 +26,9 @@ export default function App() {
         tracks={tracks}
       />
 
-      <TrackDetail track={selectedTrack} />
+      <TrackDetail 
+        track={selectedTrack} 
+      />
     </div>
   )
 }
