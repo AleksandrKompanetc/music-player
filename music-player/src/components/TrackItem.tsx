@@ -1,28 +1,33 @@
-import { useState } from 'react'
+import type { Track } from './TracksList'
 
-export default function TrackItem() {
-  const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
+type TrackItemProps = {
+  track: Track
+  selected: boolean
+  onSelect: (id: string) => void
+}
 
+export default function TrackItem({
+  track,
+  selected,
+  onSelect,
+}: TrackItemProps) {
   return (
     <li
-      key={track.id}
-      style={{ border: track.id === selectedTrackId ? '1px solid orange' : '' }}
-      onClick={() => {
-        setSelectedTrackId(track.id)
-        // setSelectedTrack(track)
+      onClick={() => onSelect(track.id)}
+      style={{
+        border: selected ? '2px solid orange' : 'none',
+        cursor: 'pointer',
       }}
     >
-      <div
-        style={{ cursor: 'pointer' }}
-        className='track-header'
-      >
+      <div className="track-header">
         {track.artwork?.['150x150'] && (
           <img
-            src={track.artwork?.['150x150']}
+            src={track.artwork['150x150']}
             alt={track.title}
-            className='track-thumb'
+            className="track-thumb"
           />
         )}
+
         <span>{track.title}</span>
       </div>
     </li>
