@@ -1,33 +1,28 @@
-import { useState, useEffect } from 'react'
-import { getTracks } from '../api/audius'
+import { useState } from 'react'
 
-export type Track = {
+export interface Track {
   id: string
   title: string
-  artwork?: {
-    '150x150'?: string
-  }
-  duration?: number
+  artwork?: Record<string, string>
 }
 
-export function TracksList() {
-  const [tracks, setTracks] = useState<Track[]>([])
+export function TracksList({tracks}: { tracks: Track[] }) {
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
 
-  useEffect(() => {
-      const fetchTracks = async () => {
+  // useEffect(() => {
+  //     const fetchTracks = async () => {
   
-        try {
-          const tracks: Track[] = await getTracks()
-          setTracks(tracks)
-        } catch {
-          // setError('Failed to load tracks')
-        } finally {
-          // setLoading(false)
-        }
-      }
-      fetchTracks()
-    }, [])
+  //       try {
+  //         const tracks: Track[] = await getTracks()
+  //         setTracks(tracks)
+  //       } catch {
+  //         // setError('Failed to load tracks')
+  //       } finally {
+  //         // setLoading(false)
+  //       }
+  //     }
+  //     fetchTracks()
+  //   }, [])
 
   if (tracks === null) {
     return (

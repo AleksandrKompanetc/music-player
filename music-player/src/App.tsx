@@ -1,7 +1,16 @@
 import { useState, useEffect } from 'react'
 import { getTracks } from './api/audius'
-import { TracksList, Track } from './components/TracksList'
+import { TracksList } from './components/TracksList'
 import TrackDetail from './components/TrackDetail'
+
+export type Track = {
+  id: string
+  title: string
+  artwork?: {
+    '150x150'?: string
+  }
+  duration?: number
+}
 
 export default function App() {
   const [tracks, setTracks] = useState<Track[]>([])
@@ -18,8 +27,6 @@ export default function App() {
     <div className="layout">
       <TracksList
         tracks={tracks}
-        selectedTrackId={selectedTrackId}
-        onSelect={setSelectedTrackId}
       />
 
       <TrackDetail track={selectedTrack} />
