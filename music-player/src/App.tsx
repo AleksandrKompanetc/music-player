@@ -1,38 +1,30 @@
 import { useState, useEffect } from 'react'
 import { getTracks } from './api/audius'
-import { TracksList } from './components/TracksList'
-import TrackDetail from './components/TrackDetail'
-
-export type Track = {
-  id: string
-  title: string
-  artwork?: {
-    '150x150'?: string
-  }
-  duration?: number
-}
 
 export default function App() {
-  const [tracks, setTracks] = useState<Track[]>([])
+  const [tracks, setTracks] = useState([])
 
   useEffect(() => {
-    getTracks().then(setTracks)
+    const fetchTracks = async () => {
+      try {
+        const tracks = await getTracks()
+        setTracks(tracks)
+      } catch (error) {
+        console.error('Error fetching tracks:', error)
+      }
+    }
+    fetchTracks()
   }, [])
 
-
   return (
-    <div className="layout">
-      <TracksList
-        tracks={tracks}
-      />
-
-      <TrackDetail 
-        track={selectedTrack} 
-      />
+    <div>
+      <h1>Music Player</h1>
+      {tracks.map(track => (
+        <li key={track.id}>{track.title}</li>
+      ))}
     </div>
   )
 }
-
 
 
 

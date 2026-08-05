@@ -1,53 +1,24 @@
-import { useState } from 'react'
-import { TrackItem } from './TrackItem'
-
-export interface Track {
-  id: string
-  title: string
-  artwork?: Record<string, string>
+type TracksListProps = {
+  tracks: Track[]
+  selectedTrackId: string | null
+  onSelect: (id: string) => void
 }
 
-export function TracksList({ tracks }: { tracks: Track[] }) {
-  const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
-
-  // useEffect(() => {
-  //     const fetchTracks = async () => {
-
-  //       try {
-  //         const tracks: Track[] = await getTracks()
-  //         setTracks(tracks)
-  //       } catch {
-  //         // setError('Failed to load tracks')
-  //       } finally {
-  //         // setLoading(false)
-  //       }
-  //     }
-  //     fetchTracks()
-  //   }, [])
-
-  if (tracks === null) {
-    return (
-      <div>
-        <span>Loading...</span>
-      </div>
-    )
-  }
-
-  if (tracks.length === 0) {
-    return (
-      <div>
-        <span>No tracks!</span>
-      </div>
-    )
-  }
-
+export function TracksList({
+  tracks,
+  selectedTrackId,
+  onSelect,
+}: TracksListProps) {
   return (
     <ul>
-      {tracks.map(track => {
-        return (
-          <TrackItem />
-        )
-      })}
+      {tracks.map(track => (
+        <TrackItem
+          key={track.id}
+          track={track}
+          selected={track.id === selectedTrackId}
+          onSelect={onSelect}
+        />
+      ))}
     </ul>
   )
 }
