@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getTracks } from './api/audius'
+import TracksList from './components/TracksList'
 
 export default function App() {
   const [tracks, setTracks] = useState([])
@@ -19,9 +20,7 @@ export default function App() {
   return (
     <div>
       <h1>Music Player</h1>
-      {tracks.map(track => (
-        <li key={track.id}>{track.title}</li>
-      ))}
+      <TracksList props={{ tracks }} />
     </div>
   )
 }

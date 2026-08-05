@@ -1,23 +1,8 @@
-type TracksListProps = {
-  tracks: Track[]
-  selectedTrackId: string | null
-  onSelect: (id: string) => void
-}
-
-export function TracksList({
-  tracks,
-  selectedTrackId,
-  onSelect,
-}: TracksListProps) {
+export default function TracksList({props}) {
   return (
     <ul>
-      {tracks.map(track => (
-        <TrackItem
-          key={track.id}
-          track={track}
-          selected={track.id === selectedTrackId}
-          onSelect={onSelect}
-        />
+      {props.tracks.map(track => (
+        <li key={track.id}>{track.title}</li>
       ))}
     </ul>
   )
