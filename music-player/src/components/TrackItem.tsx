@@ -11,11 +11,14 @@ export type Track = {
   description?: string
 }
 
+
+
 export default function TrackItem({ track }: TrackItemProps) {
   return (
     <li 
       key={track.id}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: 'pointer', marginBottom: '1rem', border: '1px solid #ccc', borderRadius: '5px', listStyle: 'none' }}
+      onClick={handleTrackClick}
     >
       <p>{track.title}</p>
       <p style={{ fontSize: '0.9em', fontStyle: 'italic'}}>{track.description}</p>
