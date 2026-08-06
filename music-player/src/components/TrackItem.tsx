@@ -11,7 +11,9 @@ export type Track = {
   description?: string
 }
 
-
+const handleTrackClick = (track: Track) => {
+  
+}
 
 export default function TrackItem({ track }: TrackItemProps) {
   return (

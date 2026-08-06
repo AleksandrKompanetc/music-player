@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import TrackItem from './TrackItem'
 import type { Track } from './TrackItem'
 
@@ -6,6 +7,8 @@ type TrackListProps = {
 }
 
 export default function TracksList({tracks}: TrackListProps) {
+  const [selectedTrackId, setSelectedTrackId] = useState(null)
+  
   return (
     <ul>
       {tracks.map(track => (
