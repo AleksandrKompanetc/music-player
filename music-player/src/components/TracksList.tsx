@@ -1,10 +1,15 @@
 import TrackItem from './TrackItem'
+import type { Track } from './TrackItem'
 
-export default function TracksList({ props }}) {
+type TrackListProps = {
+  tracks: Track[]
+}
+
+export default function TracksList({tracks}: TrackListProps) {
   return (
     <ul>
-      {props.tracks.map(track => (
-        <TrackItem track={track} />
+      {tracks.map(track => (
+        <TrackItem key={track.id} track={track} />
       ))}
     </ul>
   )

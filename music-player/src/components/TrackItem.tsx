@@ -1,6 +1,25 @@
-export default function TrackItem({ track }) {
+type TrackItemProps = {
+  track: Track
+}
+
+export type Track = {
+  id: string
+  title: string
+  artwork?: {
+    '150x150'?: string
+  }
+  description?: string
+}
+
+export default function TrackItem({ track }: TrackItemProps) {
   return (
-    <li key={track.id}>{track.title}</li>
+    <li 
+      key={track.id}
+      style={{ cursor: 'pointer' }}
+    >
+      <p>{track.title}</p>
+      <p style={{ fontSize: '0.9em', fontStyle: 'italic'}}>{track.description}</p>
+    </li>
   )
 }
 
