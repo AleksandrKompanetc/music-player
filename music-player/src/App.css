@@ -209,6 +209,17 @@
   gap: 20px;
 }
 
+.track-item {
+  cursor: 'pointer';
+  margin-bottom: 1rem;
+  list-style: 'none'
+}
+
+.selected {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 .track-card {
   background: #fff;
   border-radius: 5px;

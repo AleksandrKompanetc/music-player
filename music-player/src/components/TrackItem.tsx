@@ -9,18 +9,16 @@ export type Track = {
     '150x150'?: string
   }
   description?: string
+  isSelected?: boolean
+  onSelect?: (id: string) => void
 }
 
-const handleTrackClick = (track: Track) => {
-  
-}
-
-export default function TrackItem({ track }: TrackItemProps) {
+export default function TrackItem({ track, isSelected, onSelect }: TrackItemProps) {
   return (
     <li 
       key={track.id}
-      style={{ cursor: 'pointer', marginBottom: '1rem', border: '1px solid #ccc', borderRadius: '5px', listStyle: 'none' }}
-      onClick={handleTrackClick}
+      onClick={() => onSelect(track.id)}
+      className={`track-item ${isSelected ? 'selected' : ''}`}
     >
       <p>{track.title}</p>
       <p style={{ fontSize: '0.9em', fontStyle: 'italic'}}>{track.description}</p>

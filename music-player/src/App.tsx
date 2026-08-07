@@ -20,7 +20,9 @@ export default function App() {
   return (
     <div>
       <h1>Music Player</h1>
-      <TracksList tracks={tracks} />
+      <TracksList 
+        tracks={tracks} 
+      />
     </div>
   )
 }
