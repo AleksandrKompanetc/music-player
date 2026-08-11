@@ -22,8 +22,11 @@ export default function App() {
   }, [])
 
   return (
-    <div>
-      <h1>Music Player</h1>
+    <div className='app'>
+      <header className='app-header'>
+        <h1>Music Player</h1>
+      </header>
+      <h1>Tracks</h1>
       <TracksList 
         tracks={tracks} 
       />
