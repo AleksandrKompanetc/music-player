@@ -4,10 +4,14 @@ import TracksList from './components/TracksList'
 
 export default function App() {
   const [tracks, setTracks] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchTracks = async () => {
       try {
+        setLoading(true)
+        setError(null)
         const tracks = await getTracks()
         setTracks(tracks)
       } catch (error) {
