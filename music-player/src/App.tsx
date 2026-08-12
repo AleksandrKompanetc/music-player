@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { getTracks } from './api/audius'
 import TracksList from './components/TracksList'
 
-export default function App() {
+const App: React.FC = () => {
   const [tracks, setTracks] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -15,7 +15,9 @@ export default function App() {
         const tracks = await getTracks()
         setTracks(tracks)
       } catch (error) {
-        console.error('Error fetching tracks:', error)
+        setError(error instanceof Error ? error.message: 'It is mistake')
+      } finally {
+        setLoading(false)
       }
     }
     fetchTracks()
@@ -33,6 +35,8 @@ export default function App() {
     </div>
   )
 }
+
+export default App
 
 
 
