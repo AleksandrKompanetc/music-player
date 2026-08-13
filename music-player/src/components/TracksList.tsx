@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import TrackItem from './TrackItem'
-import type { Track } from './TrackItem'
 
-type TrackListProps = {
-  tracks: Track[]
+interface TrackListProps = {
+  
 }
 
-export default function TracksList({tracks}: TrackListProps) {
-  const [selectedTrackId, setSelectedTrackId] = useState(null)
+const TracksList: React.FC<TracksListProps> = ({}) => {
+  
 
   return (
     <ul>
@@ -22,3 +21,5 @@ export default function TracksList({tracks}: TrackListProps) {
     </ul>
   )
 }
+
+export default TracksList
