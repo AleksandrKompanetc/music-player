@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import { getTracks } from './api/audius'
 import TracksList from './components/TracksList'
+import TrackDetail from './components/TrackDetail'
+import type { Track } from './types'
 
 const App: React.FC = () => {
   const [tracks, setTracks] = useState([])
+  const [selectedtrack, setSelectedTrack] = useState<Track | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -15,7 +18,7 @@ const App: React.FC = () => {
         const tracks = await getTracks()
         setTracks(tracks)
       } catch (error) {
-        setError(error instanceof Error ? error.message: 'It is mistake')
+        setError(error instanceof Error ? error.message : 'It is mistake')
       } finally {
         setLoading(false)
       }
@@ -28,10 +31,16 @@ const App: React.FC = () => {
       <header className='app-header'>
         <h1>Music Player</h1>
       </header>
-      <h1>Tracks</h1>
-      <TracksList 
-        tracks={tracks} 
-      />
+      <main className='main-content'>
+        <aside className='sidebar'>
+          <TracksList
+            tracks={tracks}
+          />
+        </aside>
+        <section className='content'>
+          <TrackDetail track={selectedTrack} />
+        </section>
+      </main>
     </div>
   )
 }

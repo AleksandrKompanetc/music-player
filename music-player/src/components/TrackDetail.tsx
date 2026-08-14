@@ -1,12 +1,10 @@
-import type { Track } from './TracksList'
+
 
 type Props = {
   track: Track | null
 }
 
-export default function TrackDetail({
-  track,
-}: Props) {
+const TrackDetail: React.FC<TrackDetailProps> = ({ track }) => {
   if (!track) {
     return (
       <div className="player-panel">
@@ -34,6 +32,8 @@ export default function TrackDetail({
     </div>
   )
 }
+
+export default TrackDetail
 
 
 
