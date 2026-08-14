@@ -1,6 +1,6 @@
+import type { Track } from '../types'
 
-
-type Props = {
+interface TrackDetailProps {
   track: Track | null
 }
 
@@ -8,27 +8,16 @@ const TrackDetail: React.FC<TrackDetailProps> = ({ track }) => {
   if (!track) {
     return (
       <div className="player-panel">
-        <h2>Select a track</h2>
+        <p>Track is not selected</p>
       </div>
     )
   }
 
   return (
-    <div className="player-panel">
-      {track.artwork?.['150x150'] && (
-        <img
-          src={track.artwork['150x150']}
-          alt={track.title}
-          className="player-cover"
-        />
-      )}
-
+    <div className='track-detail'>
       <h2>{track.title}</h2>
-
-      <audio
-        controls
-        src={`https://api.audius.co/v1/tracks/${track.id}/stream`}
-      />
+      <p>{track.body}</p>
+      <span>{track.description}</span>
     </div>
   )
 }

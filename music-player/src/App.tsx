@@ -6,7 +6,7 @@ import type { Track } from './types'
 
 const App: React.FC = () => {
   const [tracks, setTracks] = useState([])
-  const [selectedtrack, setSelectedTrack] = useState<Track | null>(null)
+  const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -26,6 +26,10 @@ const App: React.FC = () => {
     fetchTracks()
   }, [])
 
+  const handleSelectTrack = (track: Track) => {
+    setSelectedTrack(track)
+  }
+
   return (
     <div className='app'>
       <header className='app-header'>
@@ -35,6 +39,9 @@ const App: React.FC = () => {
         <aside className='sidebar'>
           <TracksList
             tracks={tracks}
+            onSelectTrack={handleSelectTrack}
+            loadinng={loading}
+            error={error}
           />
         </aside>
         <section className='content'>

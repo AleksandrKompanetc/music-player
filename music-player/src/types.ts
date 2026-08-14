@@ -3,4 +3,5 @@ export interface Track {
   id: number
   title: string
   body: string
+  description?: string
 }
