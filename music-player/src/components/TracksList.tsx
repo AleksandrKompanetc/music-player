@@ -1,8 +1,12 @@
-import { useState } from 'react'
+import type { Track } from '../types'
 import TrackItem from './TrackItem'
 
-interface TrackListProps = {
-  
+interface TracksListProps {
+  tracks: Track[]
+  selectedTrackId: number | null
+  onSelecttrack: (track: Track) => void
+  loading: boolean
+  error: string | null
 }
 
 const TracksList: React.FC<TracksListProps> = ({}) => {
