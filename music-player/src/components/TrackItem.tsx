@@ -1,23 +1,16 @@
-type TrackItemProps = {
-  track: Track
-}
+import type { Track } from '../types'
 
-export type Track = {
-  id: string
-  title: string
-  artwork?: {
-    '150x150'?: string
-  }
-  description?: string
-  isSelected?: boolean
-  onSelect?: (id: string) => void
+interface TrackItemProps {
+  track: Track
+  isSelected: boolean
+  onSelect: () => void
 }
 
 export default function TrackItem({ track, isSelected, onSelect }: TrackItemProps) {
   return (
     <li 
       key={track.id}
-      onClick={() => onSelect(track.id)}
+      onClick={onSelect}
       className={`track-item ${isSelected ? 'selected' : ''}`}
     >
       <p>{track.title}</p>

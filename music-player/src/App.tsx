@@ -39,8 +39,9 @@ const App: React.FC = () => {
         <aside className='sidebar'>
           <TracksList
             tracks={tracks}
+            selectedTrackId={selectedTrack?.id ?? null}
             onSelectTrack={handleSelectTrack}
-            loadinng={loading}
+            loading={loading}
             error={error}
           />
         </aside>
