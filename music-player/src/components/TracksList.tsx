@@ -4,22 +4,38 @@ import TrackItem from './TrackItem'
 interface TracksListProps {
   tracks: Track[]
   selectedTrackId: number | null
-  onSelecttrack: (track: Track) => void
+  onSelectTrack: (track: Track) => void
   loading: boolean
   error: string | null
 }
 
-const TracksList: React.FC<TracksListProps> = ({}) => {
-  
+const TracksList: React.FC<TracksListProps> = ({
+  tracks,
+  selectedTrackId,
+  onSelectTrack,
+  loading,
+  error,
+}) => {
+  if (loading) {
+    return <div className='loading'>Loading...</div>
+  }
+
+  if (error) {
+    return <div className='error'>{error}</div>
+  }
+
+  if (tracks.length === 0) {
+    return <div className='empty'>No tracks found.</div>
+  }
 
   return (
-    <ul>
+    <ul className='tracks-list'>
       {tracks.map(track => (
         <TrackItem 
-          key={track.id} 
-          track={track} 
-          isSelected={track.id === selectedTrackId}
-          onSelect={() => setSelectedTrackId(track.id)}
+          key={track.id}
+          track={track}
+          isSelected={selectedTrackId === track.id}
+          onSelect={() => onSelectTrack(track)}
         />
       ))}
     </ul>
