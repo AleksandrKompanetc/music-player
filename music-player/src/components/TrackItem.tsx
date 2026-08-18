@@ -12,6 +12,12 @@ export default function TrackItem({ track, isSelected, onSelect }: TrackItemProp
       key={track.id}
       onClick={onSelect}
       className={`track-item ${isSelected ? 'selected' : ''}`}
+      style={{ 
+        border: isSelected ? '2px solid orange' : 'none', 
+        borderRadius: '5px',
+        cursor: 'pointer',
+        listStyle: 'none'
+      }}
     >
       <p>{track.title}</p>
       <p style={{ fontSize: '0.9em', fontStyle: 'italic'}}>{track.description}</p>
