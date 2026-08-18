@@ -14,10 +14,22 @@ const TrackDetail: React.FC<TrackDetailProps> = ({ track }) => {
   }
 
   return (
-    <div className='track-detail'>
-      <h2>{track.title}</h2>
-      <p>{track.body}</p>
-      <span>{track.description}</span>
+    <div className="post-detail">
+      {/* Большая картинка */}
+      <img
+        src={`https://picsum.photos/id/${track.id}/800/400`}
+        alt={track.title}
+        className="detail-image"
+      />
+
+      <h2 className="detail-title">{track.title}</h2>
+      
+      <div className="detail-meta">
+        <span>ID: {track.id}</span>
+        <span>User ID: {track.userId}</span>
+      </div>
+      
+      <p className="detail-body">{track.body}</p>
     </div>
   )
 }

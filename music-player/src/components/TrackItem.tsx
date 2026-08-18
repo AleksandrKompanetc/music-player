@@ -8,19 +8,33 @@ interface TrackItemProps {
 
 export default function TrackItem({ track, isSelected, onSelect }: TrackItemProps) {
   return (
-    <li 
+    <li
       key={track.id}
       onClick={onSelect}
       className={`track-item ${isSelected ? 'selected' : ''}`}
-      style={{ 
-        border: isSelected ? '2px solid orange' : 'none', 
+      style={{
+        border: isSelected ? '2px solid orange' : 'none',
         borderRadius: '5px',
         cursor: 'pointer',
         listStyle: 'none'
       }}
     >
-      <p>{track.title}</p>
-      <p style={{ fontSize: '0.9em', fontStyle: 'italic'}}>{track.description}</p>
+      <img
+        src={`https://picsum.photos/seed/${track.id}/50/50`}
+        alt={track.title}
+        className='track-item-image'
+        loading='lazy'
+      />
+      <div className='track-item-content'>
+        <h3 className='track-item-title'>{track.title}</h3>
+        <p 
+          className='track-item-preview' 
+          style={{ fontSize: '0.9em', fontStyle: 'italic' }}
+        >
+          {track.description}
+          {track.body.slice(0, 80)}
+        </p>
+      </div>
     </li>
   )
 }
