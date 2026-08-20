@@ -27,7 +27,7 @@ export default function TrackItem({ track, isSelected, onSelect }: TrackItemProp
       }}
     >
       <img
-        src={`https://picsum.photos/seed/${track.id}/50/50`}
+        src={imageUrl}
         alt={track.title}
         className='track-item-image'
         loading='lazy'
