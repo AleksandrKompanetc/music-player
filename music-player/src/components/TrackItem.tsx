@@ -13,6 +13,7 @@ const formatDuration = (seconds: number): string => {
 }
 
 export default function TrackItem({ track, isSelected, onSelect }: TrackItemProps) {
+  const imageUrl = track.artwork?.['150x150'] || 'https://picsum.photos/seed/${track.id}/50/50'
   return (
     <li
       key={track.id}
