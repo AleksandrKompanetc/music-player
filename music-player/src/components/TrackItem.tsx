@@ -6,6 +6,12 @@ interface TrackItemProps {
   onSelect: () => void
 }
 
+const formatDuration = (seconds: number): string => {
+  const min = Math.floor(seconds / 60)
+  const secs = seconds % 60
+  return `${min}:${secs.toString().padStart(2, '0')}`
+}
+
 export default function TrackItem({ track, isSelected, onSelect }: TrackItemProps) {
   return (
     <li
