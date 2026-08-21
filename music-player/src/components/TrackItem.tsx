@@ -3,7 +3,7 @@ import type { Track } from '../types'
 interface TrackItemProps {
   track: Track
   isSelected: boolean
-  onSelect: () => void
+  onSelect: (track: Track) => void
 }
 
 const formatDuration = (seconds: number): string => {
@@ -17,7 +17,7 @@ export default function TrackItem({ track, isSelected, onSelect }: TrackItemProp
   return (
     <li
       key={track.id}
-      onClick={onSelect}
+      onClick={() => onSelect(track)}
       className={`track-item ${isSelected ? 'selected' : ''}`}
       style={{
         border: isSelected ? '2px solid orange' : 'none',
@@ -34,13 +34,19 @@ export default function TrackItem({ track, isSelected, onSelect }: TrackItemProp
       />
       <div className='track-item-content'>
         <h3 className='track-item-title'>{track.title}</h3>
-        <p 
+        <p>{track.user.name}</p>
+        {/* <p 
           className='track-item-preview' 
           style={{ fontSize: '0.9em', fontStyle: 'italic' }}
         >
           {track.description}
           {track.body.slice(0, 80)}
         </p>
+        <div>
+          <span>{formatDuration(track.duration)}</span>
+          <span></span>
+          <span>{track.play_count.toLocaleString()} plays</span>
+        </div> */}
       </div>
     </li>
   )

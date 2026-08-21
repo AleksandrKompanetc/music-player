@@ -35,7 +35,7 @@ const TracksList: React.FC<TracksListProps> = ({
           key={track.id}
           track={track}
           isSelected={selectedTrackId === track.id}
-          onSelect={() => onSelectTrack(track)}
+          onSelect={onSelectTrack}
         />
       ))}
     </ul>
