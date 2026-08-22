@@ -6,11 +6,11 @@ interface TrackItemProps {
   onSelect: (track: Track) => void
 }
 
-const formatDuration = (seconds: number): string => {
-  const min = Math.floor(seconds / 60)
-  const secs = seconds % 60
-  return `${min}:${secs.toString().padStart(2, '0')}`
-}
+// const formatDuration = (seconds: number): string => {
+//   const min = Math.floor(seconds / 60)
+//   const secs = seconds % 60
+//   return `${min}:${secs.toString().padStart(2, '0')}`
+// }
 
 export default function TrackItem({ track, isSelected, onSelect }: TrackItemProps) {
   const imageUrl = track.artwork?.['150x150'] || 'https://picsum.photos/seed/${track.id}/50/50'
@@ -35,18 +35,6 @@ export default function TrackItem({ track, isSelected, onSelect }: TrackItemProp
       <div className='track-item-content'>
         <h3 className='track-item-title'>{track.title}</h3>
         <p>{track.user.name}</p>
-        {/* <p 
-          className='track-item-preview' 
-          style={{ fontSize: '0.9em', fontStyle: 'italic' }}
-        >
-          {track.description}
-          {track.body.slice(0, 80)}
-        </p>
-        <div>
-          <span>{formatDuration(track.duration)}</span>
-          <span></span>
-          <span>{track.play_count.toLocaleString()} plays</span>
-        </div> */}
       </div>
     </li>
   )
