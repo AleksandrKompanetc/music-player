@@ -6,16 +6,17 @@ interface TrackItemProps {
   onSelect: (track: Track) => void
 }
 
-// const formatDuration = (seconds: number): string => {
-//   const min = Math.floor(seconds / 60)
-//   const secs = seconds % 60
-//   return `${min}:${secs.toString().padStart(2, '0')}`
-// }
+const formatDuration = (seconds: number): string => {
+  const mins = Math.floor(seconds / 60)
+  const secs = seconds % 60
+  return `${mins}:${secs.toString().padStart(2, '0')}`
+}
 
 export default function TrackItem({ track, isSelected, onSelect }: TrackItemProps) {
-  const imageUrl = track.artwork?.['150x150'] || 'https://picsum.photos/seed/${track.id}/50/50'
+  const imageUrl =
+    track.artwork?.['150x150'] || 'https://via.placeholder.com/150?text=No+Art';
   return (
-    <li
+    <div
       key={track.id}
       onClick={() => onSelect(track)}
       className={`track-item ${isSelected ? 'selected' : ''}`}
@@ -36,7 +37,7 @@ export default function TrackItem({ track, isSelected, onSelect }: TrackItemProp
         <h3 className='track-item-title'>{track.title}</h3>
         <p>{track.user.name}</p>
       </div>
-    </li>
+    </div>
   )
 }
 

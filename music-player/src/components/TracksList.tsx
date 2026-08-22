@@ -29,7 +29,7 @@ const TracksList: React.FC<TracksListProps> = ({
   }
 
   return (
-    <ul className='tracks-list'>
+    <div className='tracks-list'>
       {tracks.map(track => (
         <TrackItem 
           key={track.id}
@@ -38,7 +38,7 @@ const TracksList: React.FC<TracksListProps> = ({
           onSelect={onSelectTrack}
         />
       ))}
-    </ul>
+    </div>
   )
 }
 

@@ -223,7 +223,9 @@
 .track-item {
   cursor: 'pointer';
   margin-bottom: 1rem;
-  list-style: 'none'
+  list-style: 'none';
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .selected {
