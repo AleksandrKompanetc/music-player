@@ -7,19 +7,21 @@ interface TrackDetailProps {
 const TrackDetail: React.FC<TrackDetailProps> = ({ track }) => {
   if (!track) {
     return (
-      <div className="player-panel">
+      <div className='track-detail'>
         <p>Track is not selected</p>
       </div>
     )
   }
 
+  const imageUrl = track.artwork?.['480x480'] || track.artwork?.['1000x1000'] || `https://picsum.photos/seed/${track.id}/480/480`
+
   return (
-    <div className="post-detail">
+    <div>
       {/* Большая картинка */}
       <img
-        src={`https://picsum.photos/id/${track.id}/800/400`}
+        src={imageUrl}
         alt={track.title}
-        className="detail-image"
+        className=""
       />
 
       <h2 className="detail-title">{track.title}</h2>
