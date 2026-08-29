@@ -5,7 +5,7 @@ import TrackDetail from './components/TrackDetail'
 import type { Track } from './types'
 
 const App: React.FC = () => {
-  const [tracks, setTracks] = useState([])
+  const [tracks, setTracks] = useState<Track[]>([])
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)

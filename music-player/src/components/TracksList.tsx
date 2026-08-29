@@ -1,5 +1,10 @@
-const TrackList: React.FC = ({}) => {
-  
-}
+import { Track } from '../types'
 
-export default TrackList
+export function TrackList({
+  tracks,
+
+}) {
+  return (
+    
+  )
+}
