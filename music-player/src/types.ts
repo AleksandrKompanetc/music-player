@@ -5,7 +5,7 @@ export interface TrackArtwork {
 }
 
 export interface TrackUser {
-  id: number
+  id: string
   name: string
   handle: string
 }
@@ -26,4 +26,8 @@ export interface Track {
   user: TrackUser
   permalink: string
   created_at: string
+}
+
+export interface TracksResponse {
+  data: Track[]
 }
