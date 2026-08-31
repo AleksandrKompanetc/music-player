@@ -1,4 +1,10 @@
+import type { Track } from '../types'
 
+export default function TrackItem() {
+  return (
+    <div></div>
+  )
+}
 
 
 
