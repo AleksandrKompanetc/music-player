@@ -1,8 +1,9 @@
 import { Track } from '../types'
+import TrackItem from './TrackItem'
 
 interface TrackListProps {
   tracks: Track[]
-  selectedTrackId: string | null
+  selectedTrackId: number | null
   onSelectTrack: (track: Track) => void
   loading: boolean
   error: string | null
@@ -15,10 +16,29 @@ export default function TrackList({
   loading,
   error,
 }: TrackListProps) {
-  return (
-    <ul>
-      
-    </ul>
 
+  if (loading) {
+    return <div className='loading'>Loading tracks...</div>
+  }
+
+  if (error) {
+    return <div className='error'>{error}</div>
+  }
+
+  if (tracks.length === 0) {
+    return <div className='empty'>No tracks available.</div>
+  }
+
+  return (
+    <div className='track-list'>
+      {tracks.map((track) => (
+        <TrackItem 
+          key={track.id}
+          track={track}
+          isSelected={selectedTrackId === track.id}
+          onSelect={onSelectTrack}
+        />
+      ))}
+    </div>
   )
 }
