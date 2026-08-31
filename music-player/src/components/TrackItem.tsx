@@ -1,8 +1,19 @@
 import type { Track } from '../types'
 
-export default function TrackItem() {
+interface TrackItemProps {
+  track: Track
+  isSelected: boolean
+  onSelect: (track: Track) => void
+}
+
+
+export default function TrackItem({
+  track,
+  isSelected,
+  onSelect,
+ }: TrackItemProps) {
   return (
-    <div></div>
+    
   )
 }
 
