@@ -4,7 +4,7 @@ interface TrackDetailProps {
   track: Track | null
 }
 
-const TrackDetail: React.FC<TrackDetailProps> = ({ track }) => {
+export default function TrackDetail({ track }: TrackDetailProps) {
   if (!track) {
     return (
       <div className='track-detail'>
@@ -16,12 +16,11 @@ const TrackDetail: React.FC<TrackDetailProps> = ({ track }) => {
   const imageUrl = track.artwork?.['480x480'] || track.artwork?.['1000x1000'] || `https://picsum.photos/seed/${track.id}/480/480`
 
   return (
-    <div>
-      {/* Большая картинка */}
+    <div className='track-detail'>
       <img
         src={imageUrl}
         alt={track.title}
-        className=""
+        className='track-image'
       />
 
       <h2 className="detail-title">{track.title}</h2>
@@ -36,7 +35,6 @@ const TrackDetail: React.FC<TrackDetailProps> = ({ track }) => {
   )
 }
 
-export default TrackDetail
 
 
 

@@ -1,4 +1,4 @@
-import { Track } from '../types'
+import type { Track } from '../types'
 import TrackItem from './TrackItem'
 
 interface TrackListProps {
