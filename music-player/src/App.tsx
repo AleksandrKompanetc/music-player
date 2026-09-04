@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { getTracks } from './api/audius'
 import type { Track } from './types'
-import TrackList from './components/TracksList'
+import TrackList from './components/TrackList'
 import TrackDetail from './components/TrackDetail'
 
 const App: React.FC = () => {
@@ -35,8 +35,8 @@ const App: React.FC = () => {
             {tracks.map((track) => (
               <TrackList
                 tracks={tracks}
-                selectedTrack={selectedTrack}
-                onSelectedTrack={setSelectedTrack}
+                selectedTrackId={selectedTrack?.id ?? null}
+                onSelectTrack={setSelectedTrack}
               />
             ))}
           </ul>
