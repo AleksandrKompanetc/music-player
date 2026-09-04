@@ -1,51 +1,48 @@
-import { useState, useEffect } from 'react'
+import React from 'react'
+import { useState } from 'react'
 import { getTracks } from './api/audius'
-import TracksList from './components/TracksList'
-import TrackDetail from './components/TrackDetail'
 import type { Track } from './types'
+import TrackList from './components/TracksList'
+import TrackDetail from './components/TrackDetail'
 
 const App: React.FC = () => {
   const [tracks, setTracks] = useState<Track[]>([])
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    const fetchTracks = async () => {
-      try {
-        setLoading(true)
-        setError(null)
-        const tracks = await getTracks()
-        setTracks(tracks)
-      } catch (error) {
-        setError(error instanceof Error ? error.message : 'It is mistake')
-      } finally {
-        setLoading(false)
-      }
+  const fetchTracks = async () => {
+    try {
+      setLoading(true)
+      const tracks = await getTracks()
+      setTracks(tracks)
+    } catch (error) {
+      console.error('Error fetching tracks:', error)
+    } finally {
+      setLoading(false)
     }
-    fetchTracks()
-  }, [])
-
-  const handleSelectTrack = (track: Track) => {
-    setSelectedTrack(track)
   }
+
+  fetchTracks()
 
   return (
     <div className='app'>
-      <header className='app-header'>
-        <h1>Music Player</h1>
-      </header>
+      <header className='app-header'>Music Player App</header>
       <main className='main-content'>
-        <aside className='sidebar'>
-          <TracksList
-            tracks={tracks}
-            selectedTrackId={selectedTrack?.id ?? null}
-            onSelectTrack={handleSelectTrack}
-            loading={loading}
-            error={error}
-          />
+        <aside>
+          {loading ? <div>Loading...</div> : <div>No tracks available</div>}
+          <h2>Tracks</h2>
+          <ul>
+            {tracks.map((track) => (
+              <TrackList
+                tracks={tracks}
+                selectedTrack={selectedTrack}
+                onSelectedTrack={setSelectedTrack}
+              />
+            ))}
+          </ul>
         </aside>
         <section className='content'>
+          <h2>Track Details</h2>
           <TrackDetail track={selectedTrack} />
         </section>
       </main>
@@ -54,6 +51,83 @@ const App: React.FC = () => {
 }
 
 export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useState, useEffect } from 'react'
+// import { getTracks } from './api/audius'
+// import TracksList from './components/TracksList'
+// import TrackDetail from './components/TrackDetail'
+// import type { Track } from './types'
+
+// const App: React.FC = () => {
+//   const [tracks, setTracks] = useState<Track[]>([])
+//   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
+//   const [loading, setLoading] = useState(false)
+//   const [error, setError] = useState<string | null>(null)
+
+//   useEffect(() => {
+//     const fetchTracks = async () => {
+//       try {
+//         setLoading(true)
+//         setError(null)
+//         const tracks = await getTracks()
+//         setTracks(tracks)
+//       } catch (error) {
+//         setError(error instanceof Error ? error.message : 'It is mistake')
+//       } finally {
+//         setLoading(false)
+//       }
+//     }
+//     fetchTracks()
+//   }, [])
+
+//   const handleSelectTrack = (track: Track) => {
+//     setSelectedTrack(track)
+//   }
+
+//   return (
+//     <div className='app'>
+//       <header className='app-header'>
+//         <h1>Music Player</h1>
+//       </header>
+//       <main className='main-content'>
+//         <aside className='sidebar'>
+//           <TracksList
+//             tracks={tracks}
+//             selectedTrackId={selectedTrack?.id ?? null}
+//             onSelectTrack={handleSelectTrack}
+//             loading={loading}
+//             error={error}
+//           />
+//         </aside>
+//         <section className='content'>
+//           <TrackDetail track={selectedTrack} />
+//         </section>
+//       </main>
+//     </div>
+//   )
+// }
+
+// export default App
 
 
 
