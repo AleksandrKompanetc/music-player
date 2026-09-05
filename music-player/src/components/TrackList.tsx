@@ -4,18 +4,27 @@ import TrackItem from './TrackItem'
 
 interface TrackListProps {
   tracks: Track[]
-  isSelected: boolean
+  selectedTrackId: string | null
   onSelectTrack: (track: Track) => void
+  loading: boolean
+  error: string | null
 }
 
-const TrackList: React.FC = ({tracks, isSelected, onSelectTrack}: TrackListProps) => {
+const TrackList: React.FC = ({
+  tracks,
+  selectedTrackId,
+  onSelectTrack,
+  loading,
+  error,
+}: TrackListProps) => {
   return (
     <div>
       <ul>
         {tracks.map((track) => (
-          <TrackItem 
+          <TrackItem
+            key={track.id}
             track={track}
-            isSelected={isSelected}
+            isSelected={selectedTrackId === track.id}
             onSelect={onSelectTrack}
           />
         ))}
@@ -80,7 +89,7 @@ export default TrackList
 //   return (
 //     <div className='track-list'>
 //       {tracks.map((track) => (
-//         <TrackItem 
+//         <TrackItem
 //           key={track.id}
 //           track={track}
 //           isSelected={selectedTrackId === track.id}
