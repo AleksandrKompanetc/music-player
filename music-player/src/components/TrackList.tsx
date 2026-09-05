@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Track } from '../types'
+import TrackItem from './TrackItem'
 
 interface TrackListProps {
   tracks: Track[]
@@ -10,7 +11,15 @@ interface TrackListProps {
 const TrackList: React.FC = ({tracks, isSelected, onSelectTrack}: TrackListProps) => {
   return (
     <div>
-
+      <ul>
+        {tracks.map((track) => (
+          <TrackItem 
+            track={track}
+            isSelected={isSelected}
+            onSelect={onSelectTrack}
+          />
+        ))}
+      </ul>
     </div>
   )
 }

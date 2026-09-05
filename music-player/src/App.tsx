@@ -9,14 +9,17 @@ const App: React.FC = () => {
   const [tracks, setTracks] = useState<Track[]>([])
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const fetchTracks = async () => {
     try {
       setLoading(true)
+      setError(null)
       const tracks = await getTracks()
       setTracks(tracks)
     } catch (error) {
       console.error('Error fetching tracks:', error)
+      setError(error instanceof Error ? error.message : 'An unknown error occurred')
     } finally {
       setLoading(false)
     }
@@ -31,15 +34,13 @@ const App: React.FC = () => {
         <aside>
           {loading ? <div>Loading...</div> : <div>No tracks available</div>}
           <h2>Tracks</h2>
-          <ul>
-            {tracks.map((track) => (
-              <TrackList
-                tracks={tracks}
-                selectedTrackId={selectedTrack?.id ?? null}
-                onSelectTrack={setSelectedTrack}
-              />
-            ))}
-          </ul>
+          <TrackList
+            tracks={tracks}
+            isSelected={selectedTrack !== null}
+            onSelectTrack={setSelectedTrack}
+            loading={loading}
+            error={error}
+          />
         </aside>
         <section className='content'>
           <h2>Track Details</h2>
