@@ -17,18 +17,25 @@ const TrackList: React.FC = ({
   loading,
   error,
 }: TrackListProps) => {
+  if (loading) {
+    return <div className='loading'>Loading tracks...</div>
+  }
+  if (error) {
+    return <div className='error'>{error}</div>
+  }
+  if (tracks.length === 0) {
+    return <div className='empty'>No tracks available.</div>
+  }
   return (
-    <div>
-      <ul>
-        {tracks.map((track) => (
-          <TrackItem
-            key={track.id}
-            track={track}
-            isSelected={selectedTrackId === track.id}
-            onSelect={onSelectTrack}
-          />
-        ))}
-      </ul>
+    <div className='tracks-list'>
+      {tracks.map((track) => (
+        <TrackItem
+          key={track.id}
+          track={track}
+          isSelected={selectedTrackId === track.id}
+          onSelect={onSelectTrack}
+        />
+      ))}
     </div>
   )
 }
