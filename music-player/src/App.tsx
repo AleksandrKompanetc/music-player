@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { getTracks } from './api/audius'
 import type { Track } from './types'
 import TrackList from './components/TrackList'
@@ -11,6 +11,7 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  useEffect(() => {
   const fetchTracks = async () => {
     try {
       setLoading(true)
@@ -26,6 +27,7 @@ const App: React.FC = () => {
   }
 
   fetchTracks()
+}, [])
 
   const handleSelectTrack = (track: Track) => {
     setSelectedTrack(track)
@@ -35,12 +37,11 @@ const App: React.FC = () => {
     <div className='app'>
       <header className='app-header'>Music Player App</header>
       <main className='main-content'>
-        <aside>
-          {loading ? <div>Loading...</div> : <div>No tracks available</div>}
+        <aside className='sidebar'>
           <h2>Tracks</h2>
           <TrackList
             tracks={tracks}
-            isSelected={selectedTrack !== null}
+            selectedTrackId={selectedTrack?.id ?? null}
             onSelectTrack={handleSelectTrack}
             loading={loading}
             error={error}
