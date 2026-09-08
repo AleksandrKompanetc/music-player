@@ -27,6 +27,10 @@ const App: React.FC = () => {
 
   fetchTracks()
 
+  const handleSelectTrack = (track: Track) => {
+    setSelectedTrack(track)
+  }
+
   return (
     <div className='app'>
       <header className='app-header'>Music Player App</header>
@@ -37,13 +41,12 @@ const App: React.FC = () => {
           <TrackList
             tracks={tracks}
             isSelected={selectedTrack !== null}
-            onSelectTrack={setSelectedTrack}
+            onSelectTrack={handleSelectTrack}
             loading={loading}
             error={error}
           />
         </aside>
         <section className='content'>
-          <h2>Track Details</h2>
           <TrackDetail track={selectedTrack} />
         </section>
       </main>
