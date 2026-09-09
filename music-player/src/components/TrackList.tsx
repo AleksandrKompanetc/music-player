@@ -4,13 +4,13 @@ import TrackItem from './TrackItem'
 
 interface TrackListProps {
   tracks: Track[]
-  selectedTrackId: string | null
+  selectedTrackId: number | null
   onSelectTrack: (track: Track) => void
   loading: boolean
   error: string | null
 }
 
-const TrackList: React.FC = ({
+const TrackList: React.FC<TrackListProps> = ({
   tracks,
   selectedTrackId,
   onSelectTrack,
