@@ -204,20 +204,21 @@
 
 .main-content {
   display: flex;
-  gap: 24px;
-  padding: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
+  flex: 1;
+  overflow: hidden;
 }
 
 .sidebar {
   width: 380px;
-  flex-shrink: 0;
+  border-right: 1px solid #27272a;
+  padding: 16px;
+  overflow-y: auto;
 }
 
 .content {
   flex: 1;
+  padding: 24px;
+  overflow-y: auto;
 }
 
 .title {
