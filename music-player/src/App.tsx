@@ -1,61 +1,128 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { getTracks } from './api/audius'
-import type { Track } from './types'
-import TrackList from './components/TrackList'
-import TrackDetail from './components/TrackDetail'
+import { useEffect, useState } from 'react'
+import './App.css'
+
+interface User {
+  id: number
+  name: string
+  email: string
+}
 
 const App: React.FC = () => {
-  const [tracks, setTracks] = useState<Track[]>([])
-  const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [users, setUsers] = useState<User[]>([])
 
   useEffect(() => {
-  const fetchTracks = async () => {
-    try {
-      setLoading(true)
-      setError(null)
-      const tracks = await getTracks()
-      setTracks(tracks)
-    } catch (error) {
-      console.error('Error fetching tracks:', error)
-      setError(error instanceof Error ? error.message : 'An unknown error occurred')
-    } finally {
-      setLoading(false)
+    const fetchUsers = async () => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/users')
+      const users = await response.json()
+      setUsers(users)
     }
-  }
 
-  fetchTracks()
-}, [])
-
-  const handleSelectTrack = (track: Track) => {
-    setSelectedTrack(track)
-  }
-
+    fetchUsers()
+  }, [])
   return (
     <div className='app'>
-      <header className='app-header'>Music Player App</header>
-      <main className='main-content'>
-        <aside className='sidebar'>
-          <h2>Tracks</h2>
-          <TrackList
-            tracks={tracks}
-            selectedTrackId={selectedTrack?.id ?? null}
-            onSelectTrack={handleSelectTrack}
-            loading={loading}
-            error={error}
-          />
-        </aside>
-        <section className='content'>
-          <TrackDetail track={selectedTrack} />
-        </section>
-      </main>
+      
+      {users.map((user) => (
+        <div 
+          key={user.id}
+          className='user-card'
+        >
+          <h3>{user.name}</h3>
+          <p>{user.email}</p>
+        </div>
+      ))}
     </div>
   )
 }
 
 export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react'
+// import { useState, useEffect } from 'react'
+// import { getTracks } from './api/audius'
+// import type { Track } from './types'
+// import TrackList from './components/TrackList'
+// import TrackDetail from './components/TrackDetail'
+
+// const App: React.FC = () => {
+//   const [tracks, setTracks] = useState<Track[]>([])
+//   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
+//   const [loading, setLoading] = useState(false)
+//   const [error, setError] = useState<string | null>(null)
+
+//   useEffect(() => {
+//   const fetchTracks = async () => {
+//     try {
+//       setLoading(true)
+//       setError(null)
+//       const tracks = await getTracks()
+//       setTracks(tracks)
+//     } catch (error) {
+//       console.error('Error fetching tracks:', error)
+//       setError(error instanceof Error ? error.message : 'An unknown error occurred')
+//     } finally {
+//       setLoading(false)
+//     }
+//   }
+
+//   fetchTracks()
+// }, [])
+
+//   const handleSelectTrack = (track: Track) => {
+//     setSelectedTrack(track)
+//   }
+
+//   return (
+//     <div className='app'>
+//       <header className='app-header'>Music Player App</header>
+//       <main className='main-content'>
+//         <aside className='sidebar'>
+//           <h2>Tracks</h2>
+//           <TrackList
+//             tracks={tracks}
+//             selectedTrackId={selectedTrack?.id ?? null}
+//             onSelectTrack={handleSelectTrack}
+//             loading={loading}
+//             error={error}
+//           />
+//         </aside>
+//         <section className='content'>
+//           <TrackDetail track={selectedTrack} />
+//         </section>
+//       </main>
+//     </div>
+//   )
+// }
+
+// export default App
 
 
 
