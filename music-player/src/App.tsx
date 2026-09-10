@@ -19,18 +19,39 @@ const App: React.FC = () => {
 
     fetchUsers()
   }, [])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
   return (
     <div className='app'>
-      
-      {users.map((user) => (
-        <div 
-          key={user.id}
-          className='user-card'
-        >
-          <h3>{user.name}</h3>
-          <p>{user.email}</p>
+      <form onSubmit={handleSubmit} className='user-form'>
+        <div>
+          <label>Name:</label>
+          <input placeholder='Enter name' />
         </div>
-      ))}
+        <div>
+          <label>Email:</label>
+          <input placeholder='Enter email' />
+        </div>
+        <div>
+          <label>Phone:</label>
+          <input placeholder='Enter phone' />
+        </div>
+        <button type='submit'>Add user</button>
+      </form>
+      <div>
+        {users.map((user) => (
+          <div
+            key={user.id}
+            className='user-card'
+          >
+            <h3>{user.name}</h3>
+            <p>{user.email}</p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
