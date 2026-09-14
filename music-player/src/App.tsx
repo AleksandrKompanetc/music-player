@@ -9,6 +9,9 @@ interface User {
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<User[]>([])
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -22,6 +25,7 @@ const App: React.FC = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setUsers([...users, )
   }
 
   return (
