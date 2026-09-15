@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import UserForm from './components/UserForm'
 
 interface User {
   id: number
@@ -26,7 +27,7 @@ const App: React.FC = () => {
 
   return (
     <div className='app'>
-      
+      <UserForm onAdd={setUsers} />
       <div>
         {users.map((user) => (
           <div
