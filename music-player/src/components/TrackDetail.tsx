@@ -1,39 +1,39 @@
-import type { Track } from '../types'
+// import type { Track } from '../types'
 
-interface TrackDetailProps {
-  track: Track | null
-}
+// interface TrackDetailProps {
+//   track: Track | null
+// }
 
-export default function TrackDetail({ track }: TrackDetailProps) {
-  if (!track) {
-    return (
-      <div className='track-detail'>
-        <p>Track is not selected</p>
-      </div>
-    )
-  }
+// export default function TrackDetail({ track }: TrackDetailProps) {
+//   if (!track) {
+//     return (
+//       <div className='track-detail'>
+//         <p>Track is not selected</p>
+//       </div>
+//     )
+//   }
 
-  const imageUrl = track.artwork?.['480x480'] || track.artwork?.['1000x1000'] || `https://picsum.photos/seed/${track.id}/480/480`
+//   const imageUrl = track.artwork?.['480x480'] || track.artwork?.['1000x1000'] || `https://picsum.photos/seed/${track.id}/480/480`
 
-  return (
-    <div className='track-detail'>
-      <img
-        src={imageUrl}
-        alt={track.title}
-        className='track-image'
-      />
+//   return (
+//     <div className='track-detail'>
+//       <img
+//         src={imageUrl}
+//         alt={track.title}
+//         className='track-image'
+//       />
 
-      <h2 className="detail-title">{track.title}</h2>
+//       <h2 className="detail-title">{track.title}</h2>
       
-      <div className="detail-meta">
-        <span>ID: {track.id}</span>
-        <span>User ID: {track.userId}</span>
-      </div>
+//       <div className="detail-meta">
+//         <span>ID: {track.id}</span>
+//         <span>User ID: {track.userId}</span>
+//       </div>
       
-      <p className="detail-body">{track.body}</p>
-    </div>
-  )
-}
+//       <p className="detail-body">{track.body}</p>
+//     </div>
+//   )
+// }
 
 
 

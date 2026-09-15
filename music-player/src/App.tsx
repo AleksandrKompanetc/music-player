@@ -5,13 +5,11 @@ interface User {
   id: number
   name: string
   email: string
+  phone: string
 }
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<User[]>([])
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -23,28 +21,12 @@ const App: React.FC = () => {
     fetchUsers()
   }, [])
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setUsers([...users, )
+
   }
 
   return (
     <div className='app'>
-      <form onSubmit={handleSubmit} className='user-form'>
-        <div>
-          <label>Name:</label>
-          <input placeholder='Enter name' />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input placeholder='Enter email' />
-        </div>
-        <div>
-          <label>Phone:</label>
-          <input placeholder='Enter phone' />
-        </div>
-        <button type='submit'>Add user</button>
-      </form>
+      
       <div>
         {users.map((user) => (
           <div
