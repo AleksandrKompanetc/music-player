@@ -1,8 +1,14 @@
+interface UserItemProps {
+  user: User
+  isSelected: boolean
+  onSelect: (user: User) => void
+}
 
-
-const UserItem = ({ user }) => {
+const UserItem = ({ user, isSelected, onSelect }: UserItemProps) => {
   return (
-    <div>
+    <div
+      classname={}
+    >
       <h3>{user.name}</h3>
       <p>{user.email}</p>
   )
