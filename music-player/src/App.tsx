@@ -1,25 +1,14 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import TrackList from './components/TrackList'
+import TrackDetail from './components/TrackDetail'
 
 const App: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([])
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch('https://jsonplaceholder.typicode.com/users')
-      const users = await response.json()
-      setUsers(users)
-    }
-
-    fetchUsers()
-  }, [])
-
-
-  }
 
   return (
     <div className='app'>
-      
+      <TrackList />
+      <TrackDetail />
     </div>
   )
 }
