@@ -1,20 +1,25 @@
-import UserItem from './UserItem'
+import { useEffect, useState } from 'react'
+import type { Track } from '../types'
+import TrackItem from './TrackItem'
 
-const UserList = ({ users }) => {
+export function TrackList() {
+  const [tracks, setTracks] = useState<Track[]>([])
+  const [selectedTrackId, setSelectedTrackId] = useState<number | null>(null)
+
   return (
     <div>
-      {users.map((user) => (
-        <UserItem
-          key={user.id}
-          user={user}
-          
+      {tracks.map((track) => (
+        <TrackItem
+          key={track.id}
+          name={track.name}
+          isSelected={selectedTrackId === track.id}
         />
       ))}
     </div>
   )
 }
 
-export default UserList
+export default TrackList
 
 
 

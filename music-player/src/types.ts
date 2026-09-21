@@ -1,16 +1,4 @@
-export interface TrackArtwork {
-  '150x150': string
-  '480x480': string
-  '1000x1000': string
-}
-
-export interface TrackUser {
-  id: string
-  name: string
-  handle: string
-}
-
-export interface Track {
+export type Track {
   userId: number
   id: number
   title: string
@@ -22,12 +10,10 @@ export interface Track {
   play_count: number
   repost_count: number
   favorite_count: number
-  artwork: TrackArtwork | null
-  user: TrackUser
   permalink: string
   created_at: string
 }
 
-export interface TracksResponse {
+export type TracksResponse = {
   data: Track[]
 }
