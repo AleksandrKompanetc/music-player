@@ -1,17 +1,31 @@
 import { useEffect, useState } from 'react'
 import type { Track } from '../types'
 import TrackItem from './TrackItem'
+import { getTracks } from '../api/audius'
 
 export function TrackList() {
   const [tracks, setTracks] = useState<Track[]>([])
   const [selectedTrackId, setSelectedTrackId] = useState<number | null>(null)
+
+  useEffect(() => {
+    try {
+      getTracks()
+        .then((data) => {
+          setTracks(data)
+        })
+    } catch (error) {
+      console.error('Failed to load tracks', error)
+    } finally {
+      
+    }
+  })
 
   return (
     <div>
       {tracks.map((track) => (
         <TrackItem
           key={track.id}
-          name={track.name}
+          track={track}
           isSelected={selectedTrackId === track.id}
         />
       ))}
