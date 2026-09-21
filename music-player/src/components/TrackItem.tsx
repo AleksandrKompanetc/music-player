@@ -1,66 +1,42 @@
-interface UserItemProps {
-  user: User
+import type { Track } from '../types'
+
+interface TrackItemProps {
+  track: Track
   isSelected: boolean
-  onSelect: (user: User) => void
+  onSelect: (track: Track) => void
 }
 
-const UserItem = ({ user, isSelected, onSelect }: UserItemProps) => {
+export default function TrackItem({
+  track,
+  isSelected,
+  onSelect,
+ }: TrackItemProps) {
+  const cover = track.artwork?.['150x150'] || track.artwork?.['480x480']
+
+  const formatDuration = (seconds: number): string => {
+    const min = Math.floor(seconds / 60)
+    const sec = seconds % 60
+    return `${min}:${sec.toString().padStart(2, '0')}`
+  }
+
   return (
     <div
-      classname={}
+      className={`track-item ${isSelected ? 'selected' : ''}`}
+      onClick={() => onSelect(track)}
     >
-      <h3>{user.name}</h3>
-      <p>{user.email}</p>
+      <img 
+        src={cover || `https://picsum.photos/seed/${track.id}/150/150`}
+        alt={track.title}
+        className='track-cover'
+      />
+      <div className='track-info'>
+        <div className='track-title'>{track.title}</div>
+        <div className='track-artist'>{track.user?.name || 'Unknown Artist'}</div>
+      </div>
+      <div className='track-duration'>{formatDuration(track.duration)}</div>
+    </div>
   )
 }
-
-export default UserItem
-
-
-
-
-
-
-
-// import type { Track } from '../types'
-
-// interface TrackItemProps {
-//   track: Track
-//   isSelected: boolean
-//   onSelect: (track: Track) => void
-// }
-
-// export default function TrackItem({
-//   track,
-//   isSelected,
-//   onSelect,
-//  }: TrackItemProps) {
-//   const cover = track.artwork?.['150x150'] || track.artwork?.['480x480']
-
-//   const formatDuration = (seconds: number): string => {
-//     const min = Math.floor(seconds / 60)
-//     const sec = seconds % 60
-//     return `${min}:${sec.toString().padStart(2, '0')}`
-//   }
-
-//   return (
-//     <div
-//       className={`track-item ${isSelected ? 'selected' : ''}`}
-//       onClick={() => onSelect(track)}
-//     >
-//       <img 
-//         src={cover || `https://picsum.photos/seed/${track.id}/150/150`}
-//         alt={track.title}
-//         className='track-cover'
-//       />
-//       <div className='track-info'>
-//         <div className='track-title'>{track.title}</div>
-//         <div className='track-artist'>{track.user?.name || 'Unknown Artist'}</div>
-//       </div>
-//       <div className='track-duration'>{formatDuration(track.duration)}</div>
-//     </div>
-//   )
-// }
 
 
 

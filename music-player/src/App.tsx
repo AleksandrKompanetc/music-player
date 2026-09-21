@@ -1,13 +1,5 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import UserForm from './components/UserForm'
-
-interface User {
-  id: number
-  name: string
-  email: string
-  phone: string
-}
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<User[]>([])
@@ -27,18 +19,7 @@ const App: React.FC = () => {
 
   return (
     <div className='app'>
-      <UserForm onAdd={setUsers} />
-      <div>
-        {users.map((user) => (
-          <div
-            key={user.id}
-            className='user-card'
-          >
-            <h3>{user.name}</h3>
-            <p>{user.email}</p>
-          </div>
-        ))}
-      </div>
+      
     </div>
   )
 }
