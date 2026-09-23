@@ -6,20 +6,20 @@ export function TrackDetail() {
   const [selectedTrack, setSelectedTrack] = useState(null)
   const [selectedTrackId, setSelectedTrackId] = useState(null)
 
-  useEffect(() => {
-    const fetchTracks = async () => {
+  // useEffect(() => {
+  //   const fetchTracks = async () => {
 
-      try {
-        const tracks: Track[] = await getTracks()
-        setSelectedTrackId(tracks)
-      } catch {
-        // setError('Failed to load tracks')
-      } finally {
-        // setLoading(false)
-      }
-    }
-    fetchTracks()
-  }, [selectedTrackId])
+  //     try {
+  //       const tracks: Track[] = await getTracks()
+  //       setSelectedTrackId(tracks)
+  //     } catch {
+  //       // setError('Failed to load tracks')
+  //     } finally {
+  //       // setLoading(false)
+  //     }
+  //   }
+  //   fetchTracks()
+  // }, [selectedTrackId])
 
   return (
     <div>

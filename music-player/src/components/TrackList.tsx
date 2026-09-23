@@ -16,9 +16,21 @@ export function TrackList() {
     } catch (error) {
       console.error('Failed to load tracks', error)
     } finally {
-      
+
     }
   })
+
+  if (tracks === null) {
+    return <div>
+      <span>Loading ...</span>
+    </div>
+  }
+
+  if (tracks.length === 0) {
+    return <div>
+      <span>No tracks available</span>
+    </div>
+  }
 
   return (
     <div>
@@ -27,6 +39,7 @@ export function TrackList() {
           key={track.id}
           track={track}
           isSelected={selectedTrackId === track.id}
+          onSelect={(selectedTrack) => setSelectedTrackId(selectedTrack.id)}
         />
       ))}
     </div>
