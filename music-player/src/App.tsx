@@ -2,13 +2,29 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import TrackList from './components/TrackList'
 import TrackDetail from './components/TrackDetail'
+import type { Track } from './types'
+import { getTracks } from './api/audius'
 
 const App: React.FC = () => {
+  const [tracks, setTracks] = useState<Track[]>([])
+  // const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
+
+  useEffect(() => {
+    try {
+      getTracks()
+        .then((data) => {
+          setTracks(data)
+        })
+    } catch (error) {
+      console.error('Failed to load tracks', error)
+    } finally {
+
+    }
+  })
 
   return (
     <div className='app'>
-      <TrackList />
-      <TrackDetail track={selectedTrack} />
+      <TrackList tracks={tracks} />
     </div>
   )
 }
