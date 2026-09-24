@@ -8,7 +8,7 @@ const App: React.FC = () => {
   return (
     <div className='app'>
       <TrackList />
-      <TrackDetail />
+      <TrackDetail track={selectedTrack} />
     </div>
   )
 }
