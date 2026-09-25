@@ -7,7 +7,9 @@ import { getTracks } from './api/audius'
 
 const App: React.FC = () => {
   const [tracks, setTracks] = useState<Track[]>([])
-  // const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
+  const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     try {
