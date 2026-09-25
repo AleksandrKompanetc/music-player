@@ -27,6 +27,7 @@ const App: React.FC = () => {
   return (
     <div className='app'>
       <TrackList tracks={tracks} />
+      <TrackDetail track={selectedTrack} />
     </div>
   )
 }

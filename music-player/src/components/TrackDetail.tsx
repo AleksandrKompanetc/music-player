@@ -17,7 +17,9 @@ export default function TrackDetail({ track }: TrackDetailProps) {
   return (
     <div>
       <h2>Details</h2>
-      
+      <p>{track.title}</p>
+      <p>{track.description}</p>
+      <p>{track.genre}</p>
     </div>
   )
 }
