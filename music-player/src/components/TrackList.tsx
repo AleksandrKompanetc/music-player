@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
 import type { Track } from '../types'
 import TrackItem from './TrackItem'
-import { getTracks } from '../api/audius'
 
 interface TrackListProps {
   tracks: Track[] | null
+  selectedTrack: Track | null
+  onSelect: (track: Track) => void
 }
-export function TrackList({ tracks }:TrackListProps) {
+export function TrackList({ tracks, selectedTrack, onSelect }:TrackListProps) {
 
   if (tracks === null) {
     return <div>
@@ -26,6 +26,8 @@ export function TrackList({ tracks }:TrackListProps) {
         <TrackItem
           key={track.id}
           track={track}
+          isSelected={selectedTrack?.id === track.id}
+          onSelect={onSelect}
         />
       ))}
     </div>
