@@ -12,6 +12,8 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
+  localStorage.setItem('tracks', JSON.stringify(tracks))
+
   useEffect(() => {
     try {
       setLoading(true)
