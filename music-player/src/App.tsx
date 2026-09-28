@@ -4,6 +4,7 @@ import TrackList from './components/TrackList'
 import TrackDetail from './components/TrackDetail'
 import type { Track } from './types'
 import { getTracks } from './api/audius'
+import AddTrackForm from './components/AddTrackForm'
 
 const App: React.FC = () => {
   const [tracks, setTracks] = useState<Track[]>([])
@@ -26,6 +27,7 @@ const App: React.FC = () => {
 
   return (
     <div className='app'>
+      <AddTrackForm onAdd={setTracks} />
       <TrackList 
         tracks={tracks} 
         selectedTrack={selectedTrack}

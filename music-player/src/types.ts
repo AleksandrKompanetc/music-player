@@ -1,8 +1,9 @@
-export type Track {
+export type Track = {
   userId: number
   id: number
   title: string
   body: string
+  artist: string
   description?: string | null
   genre: string
   mood: string | null

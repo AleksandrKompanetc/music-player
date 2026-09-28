@@ -1,22 +1,51 @@
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
+import type { Track } from '../types'
 
-export default function AddTrackForm() {
+interface AddTrackFormProps {
+  onAdd: (updater: Track[] | ((prev: Track[]) => Track[])) => void
+}
+
+export default function AddTrackForm({ onAdd }: AddTrackFormProps) {
   const [title, setTitle] = useState('')
   const [artist, setArtist] = useState('')
   const [genre, setGenre] = useState('')
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!title.trim() || !artist.trim() || !genre.trim()) return
+
+    const newTrack = {
+      id: Date.now(),
+      title: title.trim(),
+      artist: artist.trim(),
+      genre: genre.trim(),
+    } as Track
+
+    onAdd((prev) => [...prev, newTrack])
+
+    setTitle('')
+    setArtist('')
+    setGenre('')
+  }
+
   return (
     <form onSubmit={handleSubmit}>
-      <input placeholder='Title' />
-      <input placeholder='Artist' />
-      <input placeholder='Genre'/>
-      <button 
-        type='submit'
-        onClick={}
-      >
-        Add track
-      </button>
+      <input
+        placeholder='Title'
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <input
+        placeholder='Artist'
+        value={artist}
+        onChange={(e) => setArtist(e.target.value)}
+      />
+      <input
+        placeholder='Genre'
+        value={genre}
+        onChange={(e) => setGenre(e.target.value)}
+      />
+      <button type='submit'>Add track</button>
     </form>
   )
-
 }
