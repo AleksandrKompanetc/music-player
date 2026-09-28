@@ -14,6 +14,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     try {
+      setLoading(true)
       getTracks()
         .then((data) => {
           setTracks(data)
@@ -21,9 +22,13 @@ const App: React.FC = () => {
     } catch (error) {
       console.error('Failed to load tracks', error)
     } finally {
-
+      setLoading(false)
     }
   })
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div className='app'>
