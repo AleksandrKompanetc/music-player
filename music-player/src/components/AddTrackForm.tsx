@@ -14,14 +14,7 @@ export default function AddTrackForm({ onAdd }: AddTrackFormProps) {
     e.preventDefault()
     if (!title.trim() || !artist.trim() || !genre.trim()) return
 
-    const newTrack = {
-      id: Date.now(),
-      title: title.trim(),
-      artist: artist.trim(),
-      genre: genre.trim(),
-    } as Track
-
-    onAdd((prev) => [...prev, newTrack])
+    onAdd({ title: title.trim(), artist: artist.trim(), genre: genre.trim()})
 
     setTitle('')
     setArtist('')

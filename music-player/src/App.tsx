@@ -32,9 +32,19 @@ const App: React.FC = () => {
     return <div>Loading...</div>
   }
 
+  const handleAddTrack = (data: Omit<Track, 'id'>) => {
+    const newTrack: Track = {
+      ...data,
+      id: Date.now(),
+
+    }
+
+    setTracks((prev) => [...prev, newTrack])
+  }
+
   return (
     <div className='app'>
-      <AddTrackForm onAdd={setTracks} />
+      <AddTrackForm onAdd={handleAddTrack} />
       <TrackList 
         tracks={tracks} 
         selectedTrack={selectedTrack}
