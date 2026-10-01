@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import type { Track } from '../types'
 
 interface TrackDetailProps {

@@ -10,37 +10,47 @@ const App: React.FC = () => {
   const [tracks, setTracks] = useState<Track[]>([])
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-
-  localStorage.setItem('tracks', JSON.stringify(tracks))
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    try {
-      setLoading(true)
-      getTracks()
-        .then((data) => {
-          setTracks(data)
-        })
-    } catch (error) {
-      console.error('Failed to load tracks', error)
-    } finally {
-      setLoading(false)
+    const fetchTracks = async () => {
+      try {
+        setLoading(true)
+        setError(null)
+        const data = await getTracks()
+        setTracks(data)
+      } catch (err) {
+        console.error('Failed to load tracks', err)
+        setError(err instanceof Error ? err.message : 'Failed to load tracks')
+      } finally {
+        setLoading(false)
+      }
     }
-  })
 
-  if (loading) {
-    return <div>Loading...</div>
-  }
+    fetchTracks()
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('tracks', JSON.stringify(tracks))
+  }, [tracks])
 
   const handleAddTrack = (newTrack: Track) => {
     setTracks((prev) => [...prev, newTrack])
   }
 
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>
+  }
+
   return (
     <div className='app'>
       <AddTrackForm onAdd={handleAddTrack} />
-      <TrackList 
-        tracks={tracks} 
+      <TrackList
+        tracks={tracks}
         selectedTrack={selectedTrack}
         onSelect={setSelectedTrack}
       />

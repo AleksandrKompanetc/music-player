@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react'
 import type { Track } from '../types'
 
 interface AddTrackFormProps {
-  onAdd: (updater: Track[] | ((prev: Track[]) => Track[])) => void
+  onAdd: (newTrack: Track) => void
 }
 
 export default function AddTrackForm({ onAdd }: AddTrackFormProps) {
@@ -19,6 +19,9 @@ export default function AddTrackForm({ onAdd }: AddTrackFormProps) {
       title: title.trim(),
       artist: artist.trim(),
       genre: genre.trim(),
+      user: {
+        name: artist.trim(),
+      },
     }
 
     onAdd(newTrack)
