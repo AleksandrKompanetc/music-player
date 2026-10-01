@@ -32,13 +32,7 @@ const App: React.FC = () => {
     return <div>Loading...</div>
   }
 
-  const handleAddTrack = (data: Omit<Track, 'id'>) => {
-    const newTrack: Track = {
-      ...data,
-      id: Date.now(),
-
-    }
-
+  const handleAddTrack = (newTrack: Track) => {
     setTracks((prev) => [...prev, newTrack])
   }
 
