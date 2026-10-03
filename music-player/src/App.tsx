@@ -7,7 +7,14 @@ import { getTracks } from './api/audius'
 import AddTrackForm from './components/AddTrackForm'
 
 const App: React.FC = () => {
-  const [tracks, setTracks] = useState<Track[]>([])
+  const [tracks, setTracks] = useState<Track[]>(() => {
+    try {
+      const savedTracks = localStorage.getItem('tracks')
+      return savedTracks ? (JSON.parse(savedTracks) as Track[]) : []
+    } catch {
+      return []
+    }
+  })
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -18,7 +25,12 @@ const App: React.FC = () => {
         setLoading(true)
         setError(null)
         const data = await getTracks()
-        setTracks(data)
+        setTracks((prev) => {
+          if (prev.length > 0) {
+            return prev
+          }
+          return data
+        })
       } catch (err) {
         console.error('Failed to load tracks', err)
         setError(err instanceof Error ? err.message : 'Failed to load tracks')
