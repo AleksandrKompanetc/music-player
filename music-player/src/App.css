@@ -1,4 +1,4 @@
-/* .counter {
+.counter {
   font-size: 16px;
   padding: 5px 10px;
   border-radius: 5px;
@@ -184,9 +184,9 @@
 }
 
 .app {
+  max-width: 1200px;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   background: #484856;
   padding: 30px;
   gap: 40px;
@@ -309,4 +309,22 @@
   border: 1px solid #ccc;
   margin-bottom: 20px;
   background: #f9f9f9;
+}
+
+/* AddTrackForm */
+.add-track-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 33.33%;
+  align-items: center;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.track-list {
+  max-width: 33.3%;
+}
+
+.track-detail {
+  max-width: 33.3%;
 }

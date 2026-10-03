@@ -32,7 +32,7 @@ export default function AddTrackForm({ onAdd }: AddTrackFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='add-track-form'>
       <input
         placeholder='Title'
         value={title}

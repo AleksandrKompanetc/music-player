@@ -33,7 +33,6 @@ export default function TrackItem({
         <div className='track-title'>{track.title}</div>
         <div className='track-artist'>{track.user?.name || 'Unknown Artist'}</div>
       </div>
-      <div className='track-duration'>{formatDuration(track.duration)}</div>
     </div>
   )
 }

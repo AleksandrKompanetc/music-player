@@ -5,7 +5,7 @@ export type Track = {
   description?: string | null
   genre?: string | null
   mood?: string | null
-  duration?: number
+  duration?: number | undefined
   play_count?: number
   repost_count?: number
   favorite_count?: number

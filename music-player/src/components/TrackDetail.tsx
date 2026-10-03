@@ -14,7 +14,7 @@ export default function TrackDetail({ track }: TrackDetailProps) {
   }
 
   return (
-    <div>
+    <div className='track-detail'>
       <h2>Details</h2>
       <p>{track.title}</p>
       <p>{track.description}</p>

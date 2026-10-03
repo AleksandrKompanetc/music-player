@@ -21,7 +21,7 @@ export function TrackList({ tracks, selectedTrack, onSelect }:TrackListProps) {
   }
 
   return (
-    <div>
+    <div className='track-list'>
       {tracks.map((track) => (
         <TrackItem
           key={track.id}
