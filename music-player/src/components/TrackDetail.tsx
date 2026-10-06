@@ -5,6 +5,7 @@ interface TrackDetailProps {
 }
 
 export default function TrackDetail({ track }: TrackDetailProps) {
+  const cover = track?.artwork?.['150x150'] || track?.artwork?.['480x480']
   if (!track) {
     return (
       <div>
@@ -16,6 +17,11 @@ export default function TrackDetail({ track }: TrackDetailProps) {
   return (
     <div className='track-detail'>
       <h2>Details</h2>
+      <img 
+        src={cover || `https://picsum.photos/seed/${track.id}/150/150`}
+        alt={track.title}
+        className='track-cover'
+      />
       <p>{track.title}</p>
       <p>{track.description}</p>
       <p>{track.genre}</p>

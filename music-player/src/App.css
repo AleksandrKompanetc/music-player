@@ -186,7 +186,9 @@
 .app {
   max-width: 1200px;
   min-height: 100vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: 6fr 6fr;
+  grid-template-rows: auto 1fr; 
   background: #484856;
   padding: 30px;
   gap: 40px;
@@ -246,11 +248,12 @@
 }
 
 .track-item:hover {
-  background: #1c1c21;
+  /* background: #1c1c21; */
 }
 
 .track-item.selected {
-  background: #7c3aed;
+  /* background: #7c3aed; */
+  border: 1px solid orange;
 }
 
 .track-card {
@@ -322,9 +325,9 @@
 }
 
 .track-list {
-  max-width: 33.3%;
+  max-width: 100%;
 }
 
 .track-detail {
-  max-width: 33.3%;
+  max-width: 100%;
 }
