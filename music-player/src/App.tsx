@@ -60,7 +60,6 @@ const App: React.FC = () => {
 
   return (
     <div className='app'>
-      <AddTrackForm onAdd={handleAddTrack} />
       <TrackList
         tracks={tracks}
         selectedTrack={selectedTrack}
