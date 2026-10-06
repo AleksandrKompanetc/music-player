@@ -256,25 +256,6 @@
   border: 1px solid orange;
 }
 
-.track-card {
-  background: #fff;
-  border-radius: 5px;
-  padding: 12px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-  list-style: none;
-}
-
-.track-card:hover {
-  transform: translateY(-2px);
-}
-
-.track-card.active {
-  border: 2px solid #2563eb;
-  background: #eff6ff;
-}
-
 .reset-btn {
   border: none;
   background: #ef4444;
@@ -312,16 +293,6 @@
   border: 1px solid #ccc;
   margin-bottom: 20px;
   background: #f9f9f9;
-}
-
-/* AddTrackForm */
-.add-track-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 33.33%;
-  align-items: center;
-  margin: 0 auto;
-  gap: 10px;
 }
 
 .track-list {
