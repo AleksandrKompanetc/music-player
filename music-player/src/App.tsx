@@ -15,6 +15,7 @@ const App: React.FC = () => {
     }
   })
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null)
+  const [query, setQuery] = useState('Imagine')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -23,12 +24,14 @@ const App: React.FC = () => {
       try {
         setLoading(true)
         setError(null)
-        const data = await getTracks()
+        const data = await getTracks(query)
+
         setTracks((prev) => {
-          if (prev.length > 0) {
-            return prev
+          if (prev.length === 0) {
+            return data
           }
-          return data
+
+          return prev
         })
       } catch (err) {
         console.error('Failed to load tracks', err)
@@ -45,6 +48,27 @@ const App: React.FC = () => {
     localStorage.setItem('tracks', JSON.stringify(tracks))
   }, [tracks])
 
+  const handleAddTracks = async () => {
+    if (!query.trim()) return
+
+    try {
+      setLoading(true)
+      setError(null)
+      const data = await getTracks(query)
+
+      setTracks((prev) => {
+        const existingIds = new Set(prev.map((track) => String(track.id)))
+        const newTracks = data.filter((track) => !existingIds.has(String(track.id)))
+        return [...prev, ...newTracks]
+      })
+    } catch (err) {
+      console.error('Failed to add tracks', err)
+      setError(err instanceof Error ? err.message : 'Failed to add tracks')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   if (loading) {
     return <div>Loading...</div>
   }
@@ -55,11 +79,26 @@ const App: React.FC = () => {
 
   return (
     <div className='app'>
-      <TrackList
-        tracks={tracks}
-        selectedTrack={selectedTrack}
-        onSelect={setSelectedTrack}
-      />
+      <div className='track-column'>
+        <TrackList
+          tracks={tracks}
+          selectedTrack={selectedTrack}
+          onSelect={setSelectedTrack}
+        />
+
+        <div className='toolbar'>
+          <input
+            type='text'
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder='Search tracks...'
+          />
+          <button type='button' onClick={handleAddTracks}>
+            Add tracks
+          </button>
+        </div>
+      </div>
+
       <TrackDetail track={selectedTrack} />
     </div>
   )
